@@ -1,7 +1,7 @@
 package ru.nsu.stolyarov;
-
-import java.util.ArrayList;
-import java.util.Random;
+//эти импорты для замеров времени работы алгоритмов
+//import java.util.ArrayList;
+//import java.util.Random;
 
 /**
  * @author Dmitry Stolyarov
@@ -57,7 +57,7 @@ public class Heapsort {
     }
 
     //замеры времени выполнения
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Random num = new Random();
         int iterations = 10;
         int n = 8192;
@@ -71,5 +71,5 @@ public class Heapsort {
             heapsort(ar);
             System.out.println(n + " numbers - " + (System.currentTimeMillis() - t));
         }
-    }
+    }*/
 }
