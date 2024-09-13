@@ -4,6 +4,7 @@ import java.util.ArrayList; //эти импорты для замеров вре
 import java.util.Random;
 
 /**
+ * Реализация алгоритма пирамидальной сортировки
  * @author Dmitry Stolyarov
  */
 
