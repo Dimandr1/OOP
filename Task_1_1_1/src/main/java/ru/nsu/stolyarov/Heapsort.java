@@ -5,7 +5,6 @@ import java.util.Random;
 
 /**
  * @author Dmitry Stolyarov
-    * Реализация алгоритма пирамидальной сортировки
  */
 
 public class Heapsort {
