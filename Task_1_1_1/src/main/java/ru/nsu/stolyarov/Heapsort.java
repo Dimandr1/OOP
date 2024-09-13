@@ -1,11 +1,12 @@
 package ru.nsu.stolyarov;
+
 //эти импорты для замеров времени работы алгоритмов
 //import java.util.ArrayList;
 //import java.util.Random;
 
 /**
  * @author Dmitry Stolyarov
- * Реализация алгоритма пирамидальной сортировки
+   * Реализация алгоритма пирамидальной сортировки
  */
 
 public class Heapsort {
