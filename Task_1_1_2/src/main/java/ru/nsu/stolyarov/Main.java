@@ -69,7 +69,7 @@ public class Main {
                     Card cardTaken = deck.getTopCard();
                     player.addCard(cardTaken);
                     System.out.print("You take a card: ");
-                    cardTaken.printCard();
+                    System.out.print(cardTaken.printCard());
                     System.out.print("\n");
                     System.out.print("Your cards: ");
                     player.printHand();
@@ -96,7 +96,7 @@ public class Main {
                             Card cardTaken = deck.getTopCard();
                             kazinich.addCard(cardTaken);
                             System.out.print("The dealer takes a card: ");
-                            cardTaken.printCard();
+                            System.out.print(cardTaken.printCard());
                             System.out.print("\n");
 
                             System.out.print("Dealer's cards: ");

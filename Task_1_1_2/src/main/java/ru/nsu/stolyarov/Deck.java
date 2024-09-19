@@ -37,7 +37,6 @@ public class Deck {
                         curSuit = "clubs";
                         break;
                 }
-                ;
                 cards.add(new Card("two", curSuit));
                 cards.add(new Card("three", curSuit));
                 cards.add(new Card("four", curSuit));

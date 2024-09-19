@@ -25,11 +25,11 @@ public class Card {
     /**
      * Печатает данные о карте.
      */
-    public void printCard() {
+    public String printCard() {
         if (!hidden) {
-            System.out.print(value + " of " + suit + "(" + points + ")");
-        } else {
-            System.out.print("<hidden card>");
+            return (value + " of " + suit + "(" + points + ")");
+                } else {
+            return ("<hidden card>");
         }
     }
 }

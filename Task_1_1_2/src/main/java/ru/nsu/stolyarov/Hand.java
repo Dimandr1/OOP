@@ -57,7 +57,6 @@ public class Hand {
                     ans = 10;
                     break;
             }
-            ;
             if (card.value.equals("ace") && acesLowCost) {
                 ans = 1;
             }
@@ -124,7 +123,7 @@ public class Hand {
     public void printHand() {
         System.out.print("[");
         for (int i = 0; i < cards.size(); i++) {
-            cards.get(i).printCard();
+            System.out.print(cards.get(i).printCard());
             if (i != cards.size() - 1) {
                 System.out.print(", ");
             }
