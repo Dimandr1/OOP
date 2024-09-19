@@ -42,16 +42,16 @@ public class Main {
             System.out.println("Dealer dealt the cards");
 
             System.out.print("Your cards: ");
-            player.printHand();
+            System.out.println(player.printHand());
             System.out.print("Dealer's cards: ");
-            kazinich.printHand();
+            System.out.println(kazinich.printHand());
 
             int playerPoints = player.getTotalPoints();
             int dealerPoints = kazinich.getTotalPoints();
             if (dealerPoints == 21 || playerPoints == 21) {
                 kazinich.openHand();
                 System.out.println("The dealer opens his cards");
-                kazinich.printHand();
+                System.out.println(kazinich.printHand());
                 if (dealerPoints == 21) {
                     System.out.println("The dealer has blackjack! Casino wins.");
                 } else {
@@ -72,7 +72,7 @@ public class Main {
                     System.out.print(cardTaken.printCard());
                     System.out.print("\n");
                     System.out.print("Your cards: ");
-                    player.printHand();
+                    System.out.println(player.printHand());
 
                     if (player.getTotalPoints() < 21) {
                         System.out.print("Take another card? [y/n]: ");
@@ -90,7 +90,7 @@ public class Main {
                         System.out.println("___________________\nDealer's turn.");
                         kazinich.openHand();
                         System.out.println("The dealer opens his cards");
-                        kazinich.printHand();
+                        System.out.println(kazinich.printHand());
                         while (kazinich.getTotalPoints() < 17) {
 
                             Card cardTaken = deck.getTopCard();
@@ -100,7 +100,7 @@ public class Main {
                             System.out.print("\n");
 
                             System.out.print("Dealer's cards: ");
-                            kazinich.printHand();
+                            System.out.println(kazinich.printHand());
                         }
                         System.out.println("___________________");
                     }
