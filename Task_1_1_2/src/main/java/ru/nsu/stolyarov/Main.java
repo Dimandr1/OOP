@@ -1,10 +1,12 @@
 package ru.nsu.stolyarov;
 
 import java.util.Scanner;
+
 /**
- * Blackjack
+ * Blackjack.
+ *
  * @author Dmitry Stolyarov
- */
+ */         
 public class Main {
     public static void main(String[] args) {
         System.out.println("Welcome to Blackjack!");
@@ -63,7 +65,7 @@ public class Main {
                     player.addCard(card_taken);
                     System.out.print("You take a card: ");
                     card_taken.printCard();
-                    System.out.print("\n"); 
+                    System.out.print("\n");
                     System.out.print("Your cards: ");
                     player.printHand();
 

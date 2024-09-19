@@ -73,9 +73,9 @@ public class Deck {
         if (cards.size() == 0) {
             return null;
         } else {
-            Card return_card = cards.getLast();
-            cards.removeLast();
-            return return_card;
+            Card returnCard = cards.get(cards.size() - 1);
+            cards.remove(cards.size() - 1);
+            return returnCard;
         }
     }
 }
