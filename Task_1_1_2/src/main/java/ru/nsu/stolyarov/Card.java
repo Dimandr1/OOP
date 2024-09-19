@@ -28,7 +28,7 @@ public class Card {
     public String printCard() {
         if (!hidden) {
             return (value + " of " + suit + "(" + points + ")");
-                } else {
+        } else {
             return ("<hidden card>");
         }
     }

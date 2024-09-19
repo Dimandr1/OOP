@@ -1,6 +1,6 @@
 package ru.nsu.stolyarov;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +20,8 @@ class HandTest {
         testHand.addCard(two);
         assertEquals(13, testHand.getTotalPoints());
         Card five = new Card("five", "spades");
-        assertEquals("[ace of spades(1), jack of spades(10), two of spades(2)] => 13", testHand.printHand());
+        assertEquals("[ace of spades(1), jack of spades(10), two of spades(2)] => 13",
+                testHand.printHand());
         five.hidden = true;
         testHand.addCard(five);
         assertEquals(13, testHand.getTotalPoints());

@@ -10,6 +10,9 @@ public class Blackjack {
     private Hand dealer;
     private Deck deck;
 
+    /**
+     * Инициализация параметров.
+     */
     public Blackjack() {
         round = 0;
         playing = false;
