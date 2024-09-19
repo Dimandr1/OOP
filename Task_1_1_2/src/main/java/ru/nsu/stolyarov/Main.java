@@ -6,8 +6,12 @@ import java.util.Scanner;
  * Blackjack.
  *
  * @author Dmitry Stolyarov
- */         
+ */
 public class Main {
+    /**
+     * Консольная игра в блэкджек
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println("Welcome to Blackjack!");
         Scanner scan = new Scanner(System.in);
@@ -30,9 +34,9 @@ public class Main {
             player.addCard(deck.getTopCard());
             player.addCard(deck.getTopCard());
             kazinich.addCard(deck.getTopCard());
-            Card temp_card = deck.getTopCard();
-            temp_card.hidden = true;
-            kazinich.addCard(temp_card);
+            Card tempCard = deck.getTopCard();
+            tempCard.hidden = true;
+            kazinich.addCard(tempCard);
 
             System.out.println("Dealer dealt the cards");
 
@@ -56,23 +60,23 @@ public class Main {
                 System.out.println("___________________\nYour turn.");
                 boolean taking;
                 System.out.print("Take another card? [y/n]: ");
-                String take_inp;
-                take_inp = scan.next();
-                taking = take_inp.equals("y");
+                String takeInp;
+                takeInp = scan.next();
+                taking = takeInp.equals("y");
                 while (taking) {
 
-                    Card card_taken = deck.getTopCard();
-                    player.addCard(card_taken);
+                    Card cardTaken = deck.getTopCard();
+                    player.addCard(cardTaken);
                     System.out.print("You take a card: ");
-                    card_taken.printCard();
+                    cardTaken.printCard();
                     System.out.print("\n");
                     System.out.print("Your cards: ");
                     player.printHand();
 
                     if (player.getTotalPoints() < 21) {
                         System.out.print("Take another card? [y/n]: ");
-                        take_inp = scan.next();
-                        taking = take_inp.equals("y");
+                        takeInp = scan.next();
+                        taking = takeInp.equals("y");
                     } else {
                         taking = false;
                     }
@@ -105,7 +109,8 @@ public class Main {
                         System.out.println("The dealer has too many points! You win.");
                     } else {
                         if (dealerPoints >= playerPoints) {
-                            System.out.println("The dealer has more points or equal to you! Casino wins.");
+                            System.out.println("The dealer has more points or equal to you! " +
+                                    "Casino wins.");
                         } else {
                             System.out.println("You have more points than the dealer! You win.");
 

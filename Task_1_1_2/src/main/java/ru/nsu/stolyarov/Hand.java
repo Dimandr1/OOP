@@ -12,8 +12,7 @@ public class Hand {
     }
 
     /**
-     * Проверяет, сколько указанная карта дает очков данной руке
-     *
+     * Проверяет, сколько указанная карта дает очков данной руке.   
      * @param card -- ссылка на карту, которую нужно проверить
      * @return - целочисленное значение очков карты
      */
@@ -22,18 +21,6 @@ public class Hand {
         if (card.hidden) {
             ans = 0;
         } else {
-            /*ans = switch (card.value) {
-                case "two" -> 2;
-                case "three" -> 3;
-                case "four" -> 4;
-                case "five" -> 5;
-                case "six" -> 6;
-                case "seven" -> 7;
-                case "eight" -> 8;
-                case "nine" -> 9;
-                case "ace" -> 11;
-                default -> 10;
-            };*/
             switch (card.value) {
                 case "two":
                     ans = 2;

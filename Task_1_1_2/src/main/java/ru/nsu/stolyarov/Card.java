@@ -1,10 +1,16 @@
 package ru.nsu.stolyarov;
 
 public class Card {
-    public String value, suit;
+    public String value;
+    public String suit;
     public int points;
     public boolean hidden;
 
+    /**
+     * Инициализация новой карты.
+     * @param value - значение карты (двойка, пятерка, туз и т.д.) текстом
+     * @param suit - масть карты текстом
+     */
     public Card(String value, String suit) {
         this.value = value;
         this.suit = suit;
@@ -13,7 +19,7 @@ public class Card {
     }
 
     /**
-     * печатает данные о карте
+     * печатает данные о карте.
      */
     public void printCard() {
         if (!hidden) {
