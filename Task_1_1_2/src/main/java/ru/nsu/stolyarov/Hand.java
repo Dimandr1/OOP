@@ -3,7 +3,7 @@ package ru.nsu.stolyarov;
 import java.util.ArrayList;
 
 /**
- * Карты в руке игрока. 
+ * Карты в руке игрока.
  */
 public class Hand {
     private ArrayList<Card> cards;
@@ -16,6 +16,7 @@ public class Hand {
 
     /**
      * Проверяет, сколько указанная карта дает очков данной руке.
+     *
      * @param card -- ссылка на карту, которую нужно проверить
      * @return - целочисленное значение очков карты
      */
@@ -65,15 +66,15 @@ public class Hand {
     }
 
     /**
-     * Тузы могут давать как 11 очков, так и 1, если суммарное количество очков превысило 21
+     * Тузы могут давать как 11 очков, так и 1, если суммарное количество очков превысило 21.
      * Данная функция проверяет, не произошло ли это - и уменьшает очки за тузы, если да
      */
     private void reCheckAces() {
-        int total_points = 0;
+        int totalPoints = 0;
         for (int i = 0; i < cards.size(); i++) {
-            total_points += cards.get(i).points;
+            totalPoints += cards.get(i).points;
         }
-        if (total_points > 21) {
+        if (totalPoints > 21) {
             acesLowCost = true;
             for (int i = 0; i < cards.size(); i++) {
                 if (cards.get(i).value.equals("ace") && !cards.get(i).hidden) {
@@ -84,6 +85,8 @@ public class Hand {
     }
 
     /**
+     * Возвращает суммарные очки за карты в руке.
+     *
      * @return - возвращает суммарные очки за карты в руке
      */
     public int getTotalPoints() {
@@ -95,16 +98,20 @@ public class Hand {
     }
 
     /**
+     * Добавляет в руку игрока новую карту.
+     *
      * @param card - ссылка на карту, которую нужно добавить в руку
      */
     public void addCard(Card card) {
         card.points = checkCardPoints(card);
         cards.add(card);
-        if (!acesLowCost) reCheckAces();
+        if (!acesLowCost) {
+            reCheckAces();
+        }
     }
 
     /**
-     * удаляет карты из руки
+     * Удаляет все карты из руки.
      */
     public void clear() {
         cards.clear();
@@ -112,7 +119,7 @@ public class Hand {
     }
 
     /**
-     * печатает все карты в руке и сумму очков
+     * Печатает все карты в руке и сумму очков.
      */
     public void printHand() {
         System.out.print("[");
@@ -126,7 +133,7 @@ public class Hand {
     }
 
     /**
-     * все скрытые карты в руке делает открытыми
+     * Все скрытые карты в руке делает открытыми.
      */
     public void openHand() {
         for (int i = 0; i < cards.size(); i++) {

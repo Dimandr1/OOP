@@ -15,6 +15,7 @@ public class Deck {
 
     /**
      * Очищает колоду и заполняет её несколькими колодами по 52 карты.
+     *
      * @param n - сколько колод по 52 карты нужно добавить
      */
     public void remakeDeck(int n) {
@@ -62,13 +63,16 @@ public class Deck {
         Random rand = new Random();
         for (int i = cards.size() - 1; i > 0; i--) {
             int randInt = rand.nextInt(i + 1);
-            Card first = cards.get(randInt), second = cards.get(i);
+            Card first = cards.get(randInt);
+            Card second = cards.get(i);
             cards.set(randInt, second);
             cards.set(i, first);
         }
     }
 
     /**
+     * Возвращает ссылку на верхнюю карту в колоде.
+     *
      * @return - ссылка на верхнюю карту в колоде
      */
     public Card getTopCard() {
