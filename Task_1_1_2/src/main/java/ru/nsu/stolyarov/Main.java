@@ -11,119 +11,36 @@ public class Main {
     /**
      * Консольная игра в блэкджек.
      *
-     * @param args - хочу удалить эту хрень
+     * @param args - хотел бы удалить
      */
     public static void main(String[] args) {
-        System.out.println("Welcome to Blackjack!");
-        Scanner scan = new Scanner(System.in);
-        boolean cont = true;
-        int k = 1;
-        Hand player = new Hand();
-        Hand kazinich = new Hand();
-        Deck deck = new Deck();
-        while (cont) {
-            System.out.println("Round " + k);
+        System.out.println("Welcome to blackjack!");
+        Blackjack casino = new Blackjack();
+        Scanner input = new Scanner(System.in);
+        boolean continuePlaying = true;
+        while (continuePlaying) {
             System.out.print("How many decks to use? [enter natural number]: ");
-            int decks = scan.nextInt();
-            if (decks < 1) {
-                decks = 1;
-                System.out.println("There must be at least one deck.");
-            }
-            deck.remakeDeck(decks);
-            player.clear();
-            kazinich.clear();
-            player.addCard(deck.getTopCard());
-            player.addCard(deck.getTopCard());
-            kazinich.addCard(deck.getTopCard());
-            Card tempCard = deck.getTopCard();
-            tempCard.hidden = true;
-            kazinich.addCard(tempCard);
-
-            System.out.println("Dealer dealt the cards");
-
-            System.out.print("Your cards: ");
-            System.out.println(player.printHand());
-            System.out.print("Dealer's cards: ");
-            System.out.println(kazinich.printHand());
-
-            int playerPoints = player.getTotalPoints();
-            int dealerPoints = kazinich.getTotalPoints();
-            if (dealerPoints == 21 || playerPoints == 21) {
-                kazinich.openHand();
-                System.out.println("The dealer opens his cards");
-                System.out.println(kazinich.printHand());
-                if (dealerPoints == 21) {
-                    System.out.println("The dealer has blackjack! Casino wins.");
-                } else {
-                    System.out.println("You have blackjack! You win.");
-                }
-            } else {
+            int decks = input.nextInt();
+            if (casino.startNextRound(decks)) {
                 System.out.println("___________________\nYour turn.");
-                boolean taking;
                 System.out.print("Take another card? [y/n]: ");
-                String takeInp;
-                takeInp = scan.next();
-                taking = takeInp.equals("y");
-                while (taking) {
-
-                    Card cardTaken = deck.getTopCard();
-                    player.addCard(cardTaken);
-                    System.out.print("You take a card: ");
-                    System.out.print(cardTaken.printCard());
-                    System.out.print("\n");
-                    System.out.print("Your cards: ");
-                    System.out.println(player.printHand());
-
-                    if (player.getTotalPoints() < 21) {
-                        System.out.print("Take another card? [y/n]: ");
-                        takeInp = scan.next();
-                        taking = takeInp.equals("y");
-                    } else {
-                        taking = false;
-                    }
+                String takingInp = input.next();
+                boolean taking = takingInp.equals("y");
+                while (taking && casino.isPlaying()) {
+                    casino.playerTakesCard();
+                    System.out.print("Take another card? [y/n]: ");
+                    takingInp = input.next();
+                    taking = takingInp.equals("y");
                 }
 
-                if (player.getTotalPoints() > 21) {
-                    System.out.println("You have too many points! Casino wins.");
-                } else {
-                    if (kazinich.getTotalPoints() < 17) {
-                        System.out.println("___________________\nDealer's turn.");
-                        kazinich.openHand();
-                        System.out.println("The dealer opens his cards");
-                        System.out.println(kazinich.printHand());
-                        while (kazinich.getTotalPoints() < 17) {
+                casino.dealersTurn();
 
-                            Card cardTaken = deck.getTopCard();
-                            kazinich.addCard(cardTaken);
-                            System.out.print("The dealer takes a card: ");
-                            System.out.print(cardTaken.printCard());
-                            System.out.print("\n");
-
-                            System.out.print("Dealer's cards: ");
-                            System.out.println(kazinich.printHand());
-                        }
-                        System.out.println("___________________");
-                    }
-                    playerPoints = player.getTotalPoints();
-                    dealerPoints = kazinich.getTotalPoints();
-                    if (dealerPoints > 21) {
-                        System.out.println("The dealer has too many points! You win.");
-                    } else {
-                        if (dealerPoints >= playerPoints) {
-                            System.out.println("The dealer has more points or equal to you! "
-                                    + "Casino wins.");
-                        } else {
-                            System.out.println("You have more points than the dealer! You win.");
-
-                        }
-                    }
-                }
+                casino.endRound();
             }
-            System.out.print("Another round? [y/n]: ");
-            String roundInp = scan.next();
-            cont = roundInp.equals("y");
 
-            k++;
+            System.out.print("Another round? [y/n]: ");
+            String continuePlayingInput = input.next();
+            continuePlaying = continuePlayingInput.equals("y");
         }
         System.out.println("Thank you for playing!");
     }
