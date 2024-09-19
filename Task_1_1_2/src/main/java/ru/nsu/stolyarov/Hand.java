@@ -120,15 +120,17 @@ public class Hand {
     /**
      * Печатает все карты в руке и сумму очков.
      */
-    public void printHand() {
-        System.out.print("[");
+    public String printHand() {
+        String ans = new String();
+        ans += "[";
         for (int i = 0; i < cards.size(); i++) {
-            System.out.print(cards.get(i).printCard());
+            ans += cards.get(i).printCard();
             if (i != cards.size() - 1) {
-                System.out.print(", ");
+                ans += ", ";
             }
         }
-        System.out.println("] => " + getTotalPoints());
+        ans += "] => " + getTotalPoints();
+        return ans;
     }
 
     /**

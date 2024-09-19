@@ -1,6 +1,7 @@
 package ru.nsu.stolyarov;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 
@@ -13,6 +14,6 @@ class CardTest {
         Card two = new Card("two", "spades");
         two.hidden = true;
         two.points = 0;
-        assertEquals("<hidden card>", ace.printCard());
+        assertEquals("<hidden card>", two.printCard());
     }
 }
