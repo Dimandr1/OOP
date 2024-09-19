@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Hand {
     private ArrayList<Card> cards;
-    private boolean aces_low_cost;
+    private boolean acesLowCost;
 
     public Hand() {
         cards = new ArrayList<>();
-        aces_low_cost = false;
+        acesLowCost = false;
     }
 
     /**
@@ -34,7 +34,7 @@ public class Hand {
                 case "ace" -> 11;
                 default -> 10;
             };
-            if (card.value.equals("ace") && aces_low_cost) {
+            if (card.value.equals("ace") && acesLowCost) {
                 ans = 1;
             }
         }
@@ -51,7 +51,7 @@ public class Hand {
             total_points += cards.get(i).points;
         }
         if (total_points > 21) {
-            aces_low_cost = true;
+            acesLowCost = true;
             for (int i = 0; i < cards.size(); i++) {
                 if (cards.get(i).value.equals("ace") && !cards.get(i).hidden) {
                     cards.get(i).points = 1;
@@ -64,11 +64,11 @@ public class Hand {
      * @return - возвращает суммарные очки за карты в руке
      */
     public int getTotalPoints() {
-        int total_points = 0;
+        int totalPoints = 0;
         for (int i = 0; i < cards.size(); i++) {
-            total_points += cards.get(i).points;
+            totalPoints += cards.get(i).points;
         }
-        return total_points;
+        return totalPoints;
     }
 
     /**
@@ -77,7 +77,7 @@ public class Hand {
     public void addCard(Card card) {
         card.points = checkCardPoints(card);
         cards.add(card);
-        if (!aces_low_cost) reCheckAces();
+        if (!acesLowCost) reCheckAces();
     }
 
     /**
@@ -85,7 +85,7 @@ public class Hand {
      */
     public void clear() {
         cards.clear();
-        aces_low_cost = false;
+        acesLowCost = false;
     }
 
     /**
@@ -103,7 +103,7 @@ public class Hand {
     }
 
     /**
-     * все скрытые карты в руке делает открытыми                
+     * все скрытые карты в руке делает открытыми
      */
     public void openHand() {
         for (int i = 0; i < cards.size(); i++) {

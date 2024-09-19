@@ -1,10 +1,8 @@
 package ru.nsu.stolyarov;
 
 import java.util.Scanner;
-
 /**
  * Blackjack
- *
  * @author Dmitry Stolyarov
  */
 public class Main {
@@ -115,8 +113,8 @@ public class Main {
                 }
             }
             System.out.print("Another round? [y/n]: ");
-            String round_inp = scan.next();
-            cont = round_inp.equals("y");
+            String roundInp = scan.next();
+            cont = roundInp.equals("y");
 
             k++;
         }

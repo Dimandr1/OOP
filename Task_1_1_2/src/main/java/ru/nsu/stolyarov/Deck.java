@@ -19,39 +19,39 @@ public class Deck {
         cards.clear();
         for (int k = 0; k < n; k++) {
             for (int i = 0; i < 4; i++) {
-                String cur_suit = switch (i) {
+                String curSuit = switch (i) {
                     case 0 -> "hearts";
                     case 1 -> "diamonds";
                     case 2 -> "spades";
                     default -> "clubs";
                 };
-                cards.add(new Card("two", cur_suit));
-                cards.add(new Card("three", cur_suit));
-                cards.add(new Card("four", cur_suit));
-                cards.add(new Card("five", cur_suit));
-                cards.add(new Card("six", cur_suit));
-                cards.add(new Card("seven", cur_suit));
-                cards.add(new Card("eight", cur_suit));
-                cards.add(new Card("nine", cur_suit));
-                cards.add(new Card("ten", cur_suit));
-                cards.add(new Card("jack", cur_suit));
-                cards.add(new Card("queen", cur_suit));
-                cards.add(new Card("king", cur_suit));
-                cards.add(new Card("ace", cur_suit));
+                cards.add(new Card("two", curSuit));
+                cards.add(new Card("three", curSuit));
+                cards.add(new Card("four", curSuit));
+                cards.add(new Card("five", curSuit));
+                cards.add(new Card("six", curSuit));
+                cards.add(new Card("seven", curSuit));
+                cards.add(new Card("eight", curSuit));
+                cards.add(new Card("nine", curSuit));
+                cards.add(new Card("ten", curSuit));
+                cards.add(new Card("jack", curSuit));
+                cards.add(new Card("queen", curSuit));
+                cards.add(new Card("king", curSuit));
+                cards.add(new Card("ace", curSuit));
             }
         }
         reshuffle();
     }
 
     /**
-     * Перемещивает колоду
+     * Перемешивает колоду
      */
     private void reshuffle() {
         Random rand = new Random();
         for (int i = cards.size() - 1; i > 0; i--) {
-            int rand_int = rand.nextInt(i + 1);
-            Card first = cards.get(rand_int), second = cards.get(i);
-            cards.set(rand_int, second);
+            int randInt = rand.nextInt(i + 1);
+            Card first = cards.get(randInt), second = cards.get(i);
+            cards.set(randInt, second);
             cards.set(i, first);
         }
     }
