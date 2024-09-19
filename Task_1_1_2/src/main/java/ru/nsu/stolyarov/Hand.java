@@ -2,6 +2,9 @@ package ru.nsu.stolyarov;
 
 import java.util.ArrayList;
 
+/**
+ * Карты в руке игрока. 
+ */
 public class Hand {
     private ArrayList<Card> cards;
     private boolean acesLowCost;
@@ -12,7 +15,7 @@ public class Hand {
     }
 
     /**
-     * Проверяет, сколько указанная карта дает очков данной руке.   
+     * Проверяет, сколько указанная карта дает очков данной руке.
      * @param card -- ссылка на карту, которую нужно проверить
      * @return - целочисленное значение очков карты
      */

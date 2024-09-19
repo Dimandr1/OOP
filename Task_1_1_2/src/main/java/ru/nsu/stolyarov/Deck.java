@@ -3,6 +3,9 @@ package ru.nsu.stolyarov;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Стопка карт из некоторого количества колод.
+ */
 public class Deck {
     private ArrayList<Card> cards;
 

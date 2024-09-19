@@ -1,5 +1,8 @@
 package ru.nsu.stolyarov;
 
+/**
+ * Отдельная игральная карта с соответствующими параметрами.
+ */
 public class Card {
     public String value;
     public String suit;
@@ -8,6 +11,7 @@ public class Card {
 
     /**
      * Инициализация новой карты.
+     *
      * @param value - значение карты (двойка, пятерка, туз и т.д.) текстом
      * @param suit - масть карты текстом
      */
@@ -19,7 +23,7 @@ public class Card {
     }
 
     /**
-     * печатает данные о карте.
+     * Печатает данные о карте.
      */
     public void printCard() {
         if (!hidden) {

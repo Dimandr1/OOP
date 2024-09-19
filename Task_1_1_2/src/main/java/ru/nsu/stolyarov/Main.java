@@ -9,8 +9,9 @@ import java.util.Scanner;
  */
 public class Main {
     /**
-     * Консольная игра в блэкджек
-     * @param args
+     * Консольная игра в блэкджек.
+     *
+     * @param args - хочу удалить эту хрень
      */
     public static void main(String[] args) {
         System.out.println("Welcome to Blackjack!");
@@ -92,10 +93,10 @@ public class Main {
                         kazinich.printHand();
                         while (kazinich.getTotalPoints() < 17) {
 
-                            Card card_taken = deck.getTopCard();
-                            kazinich.addCard(card_taken);
+                            Card cardTaken = deck.getTopCard();
+                            kazinich.addCard(cardTaken);
                             System.out.print("The dealer takes a card: ");
-                            card_taken.printCard();
+                            cardTaken.printCard();
                             System.out.print("\n");
 
                             System.out.print("Dealer's cards: ");
@@ -109,8 +110,8 @@ public class Main {
                         System.out.println("The dealer has too many points! You win.");
                     } else {
                         if (dealerPoints >= playerPoints) {
-                            System.out.println("The dealer has more points or equal to you! " +
-                                    "Casino wins.");
+                            System.out.println("The dealer has more points or equal to you! "
+                                    + "Casino wins.");
                         } else {
                             System.out.println("You have more points than the dealer! You win.");
 
