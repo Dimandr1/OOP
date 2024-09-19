@@ -1,12 +1,13 @@
 package ru.nsu.stolyarov;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class HandTest {
     @Test
-    void test(){
+    void test() {
         Card jack = new Card("jack", "spades");
         Card two = new Card("two", "spades");
         Card ace = new Card("ace", "spades");

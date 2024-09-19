@@ -20,7 +20,7 @@ public class Deck {
         for (int k = 0; k < n; k++) {
             for (int i = 0; i < 4; i++) {
                 String curSuit;
-                switch (i){
+                switch (i) {
                     case 0:
                         curSuit = "hearts";
                         break;
@@ -33,13 +33,8 @@ public class Deck {
                     default:
                         curSuit = "clubs";
                         break;
-                                }
-                                /*String curSuit = switch (i) {
-                                    case 0 -> "hearts";
-                                    case 1 -> "diamonds";
-                                    case 2 -> "spades";
-                                    default -> "clubs";
-                                };*/
+                }
+                ;
                 cards.add(new Card("two", curSuit));
                 cards.add(new Card("three", curSuit));
                 cards.add(new Card("four", curSuit));

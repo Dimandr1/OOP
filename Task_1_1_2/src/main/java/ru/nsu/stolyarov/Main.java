@@ -63,8 +63,7 @@ public class Main {
                     player.addCard(card_taken);
                     System.out.print("You take a card: ");
                     card_taken.printCard();
-                    System.out.print("\n");
-
+                    System.out.print("\n"); 
                     System.out.print("Your cards: ");
                     player.printHand();
 

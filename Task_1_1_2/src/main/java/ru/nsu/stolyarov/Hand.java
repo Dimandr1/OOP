@@ -22,7 +22,7 @@ public class Hand {
         if (card.hidden) {
             ans = 0;
         } else {
-            ans = switch (card.value) {
+            /*ans = switch (card.value) {
                 case "two" -> 2;
                 case "three" -> 3;
                 case "four" -> 4;
@@ -33,7 +33,40 @@ public class Hand {
                 case "nine" -> 9;
                 case "ace" -> 11;
                 default -> 10;
-            };
+            };*/
+            switch (card.value) {
+                case "two":
+                    ans = 2;
+                    break;
+                case "three":
+                    ans = 3;
+                    break;
+                case "four":
+                    ans = 4;
+                    break;
+                case "five":
+                    ans = 5;
+                    break;
+                case "six":
+                    ans = 6;
+                    break;
+                case "seven":
+                    ans = 7;
+                    break;
+                case "eight":
+                    ans = 8;
+                    break;
+                case "nine":
+                    ans = 9;
+                    break;
+                case "ace":
+                    ans = 11;
+                    break;
+                default:
+                    ans = 10;
+                    break;
+            }
+            ;
             if (card.value.equals("ace") && acesLowCost) {
                 ans = 1;
             }
