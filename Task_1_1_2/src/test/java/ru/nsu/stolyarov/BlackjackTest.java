@@ -37,5 +37,12 @@ class BlackjackTest {
         testBlackjack.newGame();
         assertEquals(1, testBlackjack.playerScore);
         assertEquals(0, testBlackjack.casinoScore);
+
+        seed = 7;
+        input = "1\ny\ny\ny\ny\nn\nn";
+        testBlackjack = new Blackjack(input, seed);
+        testBlackjack.newGame();
+        assertEquals(1, testBlackjack.playerScore);
+        assertEquals(0, testBlackjack.casinoScore);
     }
 }
