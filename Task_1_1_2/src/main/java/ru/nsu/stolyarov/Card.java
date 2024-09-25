@@ -13,7 +13,7 @@ public class Card {
      * Инициализация новой карты.
      *
      * @param value - значение карты (двойка, пятерка, туз и т.д.) текстом
-     * @param suit - масть карты текстом
+     * @param suit  - масть карты текстом
      */
     public Card(String value, String suit) {
         this.value = value;

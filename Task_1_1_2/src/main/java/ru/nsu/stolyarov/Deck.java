@@ -8,9 +8,17 @@ import java.util.Random;
  */
 public class Deck {
     private ArrayList<Card> cards;
+    private Random rand;
 
     public Deck() {
         cards = new ArrayList<>();
+        rand = new Random();
+    }
+
+    public Deck(long seed) {
+        cards = new ArrayList<>();
+        rand = new Random();
+        rand.setSeed(seed);
     }
 
     /**
@@ -52,14 +60,12 @@ public class Deck {
                 cards.add(new Card("ace", curSuit));
             }
         }
-        reshuffle();
     }
 
     /**
      * Перемешивает колоду.
      */
-    private void reshuffle() {
-        Random rand = new Random();
+    public void reshuffle() {
         for (int i = cards.size() - 1; i > 0; i--) {
             int randInt = rand.nextInt(i + 1);
             Card first = cards.get(randInt);
@@ -83,4 +89,18 @@ public class Deck {
             return returnCard;
         }
     }
+
+    /**
+     * Возвращает карту под указанным индексом. Используется только для тестирования.
+     *
+     * @param i - индекс карты, которую хотим посмотреть
+     * @return - возвращает требуемую карту
+     */
+    public Card lookAtCard(int i) {
+        if (i >= cards.size()) {
+            return null;
+        }
+        return cards.get(i);
+    }
+
 }

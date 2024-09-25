@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 class HandTest {
     @Test
     void test() {
+
+        //различные проверки корректности подсчёта очков, распечатывания руки
+
         Hand testHand = new Hand();
         assertEquals(0, testHand.getTotalPoints());
         Card ace = new Card("ace", "spades");

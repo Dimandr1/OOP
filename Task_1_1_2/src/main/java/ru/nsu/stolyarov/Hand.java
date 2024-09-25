@@ -22,44 +22,40 @@ public class Hand {
      */
     private int checkCardPoints(Card card) {
         int ans;
-        if (card.hidden) {
-            ans = 0;
-        } else {
-            switch (card.value) {
-                case "two":
-                    ans = 2;
-                    break;
-                case "three":
-                    ans = 3;
-                    break;
-                case "four":
-                    ans = 4;
-                    break;
-                case "five":
-                    ans = 5;
-                    break;
-                case "six":
-                    ans = 6;
-                    break;
-                case "seven":
-                    ans = 7;
-                    break;
-                case "eight":
-                    ans = 8;
-                    break;
-                case "nine":
-                    ans = 9;
-                    break;
-                case "ace":
-                    ans = 11;
-                    break;
-                default:
-                    ans = 10;
-                    break;
-            }
-            if (card.value.equals("ace") && acesLowCost) {
-                ans = 1;
-            }
+        switch (card.value) {
+            case "two":
+                ans = 2;
+                break;
+            case "three":
+                ans = 3;
+                break;
+            case "four":
+                ans = 4;
+                break;
+            case "five":
+                ans = 5;
+                break;
+            case "six":
+                ans = 6;
+                break;
+            case "seven":
+                ans = 7;
+                break;
+            case "eight":
+                ans = 8;
+                break;
+            case "nine":
+                ans = 9;
+                break;
+            case "ace":
+                ans = 11;
+                break;
+            default:
+                ans = 10;
+                break;
+        }
+        if (card.value.equals("ace") && acesLowCost) {
+            ans = 1;
         }
         return ans;
     }
@@ -91,7 +87,9 @@ public class Hand {
     public int getTotalPoints() {
         int totalPoints = 0;
         for (int i = 0; i < cards.size(); i++) {
-            totalPoints += cards.get(i).points;
+            if (!cards.get(i).hidden) {
+                totalPoints += cards.get(i).points;
+            }
         }
         return totalPoints;
     }
@@ -121,7 +119,7 @@ public class Hand {
      * Печатает все карты в руке и сумму очков.
      */
     public String printHand() {
-        String ans = new String();
+        String ans = "";
         ans += "[";
         for (int i = 0; i < cards.size(); i++) {
             ans += cards.get(i).printCard();
@@ -142,5 +140,14 @@ public class Hand {
             cards.get(i).points = checkCardPoints(cards.get(i));
         }
         reCheckAces();
+    }
+
+    /**
+     * Скрыть указанную карту
+     *
+     * @param i - индекс карты, которую нужно скрыть
+     */
+    public void hideCard(int i) {
+        cards.get(i).hidden = true;
     }
 }
