@@ -9,7 +9,7 @@ import java.util.Random;
  * @author Dmitry Stolyarov
  */
 
-public class Heapsort {
+public class    Heapsort {
     /**
      * функция опускает элемент вниз по куче, пока он не займет правильное место, т.е. его значение
      * будет не меньше его детей. До тех пор она меняет его местами с наибольшим из детей
