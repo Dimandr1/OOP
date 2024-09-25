@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -88,13 +88,13 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -139,6 +139,44 @@ extends java.lang.Object</pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colSecond" scope="col">Field</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#casinoScore">casinoScore</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected <a href="Hand.html" title="class in ru.nsu.stolyarov">Hand</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dealer">dealer</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="Hand.html" title="class in ru.nsu.stolyarov">Hand</a></code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#player">player</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#playerScore">playerScore</a></span></code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section>
 <ul class="blockList">
@@ -154,8 +192,13 @@ extends java.lang.Object</pre>
 </tr>
 <tr class="altColor">
 <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E()">Blackjack</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,long)">Blackjack</a></span>&#8203;(java.lang.String&nbsp;inputText,
+         long&nbsp;seed)</code></th>
 <td class="colLast">
-<div class="block">Инициализация параметров.</div>
+<div class="block">Инициализация параметров для тестирования.</div>
 </td>
 </tr>
 </table>
@@ -177,38 +220,10 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dealersTurn()">dealersTurn</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Дилер открывает карты набирает себе до необходимого количества очков.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#endRound()">endRound</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#newGame()">newGame</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Подсчёт очков, объявление победителя.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isPlaying()">isPlaying</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Доступ к информации, продолжается ли игра.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#playerTakesCard()">playerTakesCard</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Отдает игроку еще карту.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#startNextRound(int)">startNextRound</a></span>&#8203;(int&nbsp;decks)</code></th>
-<td class="colLast">
-<div class="block">Собираем колоду, раздаем карты.</div>
+<div class="block">Начало новой игры.</div>
 </td>
 </tr>
 </table>
@@ -228,6 +243,52 @@ extends java.lang.Object</pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<section>
+<ul class="blockList">
+<li class="blockList"><a id="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a id="player">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>player</h4>
+<pre>protected&nbsp;<a href="Hand.html" title="class in ru.nsu.stolyarov">Hand</a> player</pre>
+</li>
+</ul>
+<a id="dealer">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>dealer</h4>
+<pre>protected&nbsp;<a href="Hand.html" title="class in ru.nsu.stolyarov">Hand</a> dealer</pre>
+</li>
+</ul>
+<a id="playerScore">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>playerScore</h4>
+<pre>public&nbsp;int playerScore</pre>
+</li>
+</ul>
+<a id="casinoScore">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>casinoScore</h4>
+<pre>public&nbsp;int casinoScore</pre>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section>
 <ul class="blockList">
@@ -238,11 +299,26 @@ extends java.lang.Object</pre>
 <a id="&lt;init&gt;()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>Blackjack</h4>
 <pre>public&nbsp;Blackjack()</pre>
-<div class="block">Инициализация параметров.</div>
+</li>
+</ul>
+<a id="&lt;init&gt;(java.lang.String,long)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>Blackjack</h4>
+<pre>public&nbsp;Blackjack&#8203;(java.lang.String&nbsp;inputText,
+                 long&nbsp;seed)</pre>
+<div class="block">Инициализация параметров для тестирования.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>inputText</code> - - заданный заранее ввод</dd>
+<dd><code>seed</code> - - сид для фиксированного рандома</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -255,72 +331,14 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="startNextRound(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>startNextRound</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;startNextRound&#8203;(int&nbsp;decks)</pre>
-<div class="block">Собираем колоду, раздаем карты.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>decks</code> - - количество колод, которые мы замешиваем в игровую колоду</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>- возвращает, продолжается ли игра</dd>
-</dl>
-</li>
-</ul>
-<a id="isPlaying()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isPlaying</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;isPlaying()</pre>
-<div class="block">Доступ к информации, продолжается ли игра.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>- продолжается ли игра</dd>
-</dl>
-</li>
-</ul>
-<a id="playerTakesCard()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>playerTakesCard</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;playerTakesCard()</pre>
-<div class="block">Отдает игроку еще карту.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>- возвращает, продолжается ли игра</dd>
-</dl>
-</li>
-</ul>
-<a id="dealersTurn()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>dealersTurn</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;dealersTurn()</pre>
-<div class="block">Дилер открывает карты набирает себе до необходимого количества очков.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>- возвращает, продолжается ли игра</dd>
-</dl>
-</li>
-</ul>
-<a id="endRound()">
+<a id="newGame()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>endRound</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;endRound()</pre>
-<div class="block">Подсчёт очков, объявление победителя.</div>
+<h4>newGame</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;newGame()</pre>
+<div class="block">Начало новой игры.</div>
 </li>
 </ul>
 </li>
@@ -374,13 +392,13 @@ extends java.lang.Object</pre>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

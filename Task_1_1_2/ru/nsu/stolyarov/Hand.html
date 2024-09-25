@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -197,12 +197,19 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hideCard(int)">hideCard</a></span>&#8203;(int&nbsp;i)</code></th>
+<td class="colLast">
+<div class="block">Скрыть указанную карту</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#openHand()">openHand</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Все скрытые карты в руке делает открытыми.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#printHand()">printHand</a></span>()</code></th>
 <td class="colLast">
@@ -303,11 +310,25 @@ extends java.lang.Object</pre>
 <a id="openHand()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>openHand</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;openHand()</pre>
 <div class="block">Все скрытые карты в руке делает открытыми.</div>
+</li>
+</ul>
+<a id="hideCard(int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>hideCard</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;hideCard&#8203;(int&nbsp;i)</pre>
+<div class="block">Скрыть указанную карту</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>i</code> - - индекс карты, которую нужно скрыть</dd>
+</dl>
 </li>
 </ul>
 </li>
