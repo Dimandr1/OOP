@@ -10,11 +10,19 @@ public class Deck {
     private ArrayList<Card> cards;
     private Random rand;
 
+    /**
+     * Инициализация параметров.
+     */
     public Deck() {
         cards = new ArrayList<>();
         rand = new Random();
     }
 
+    /**
+     * Инициализация параметров.
+     *
+     * @param seed - задание сида для рандома
+     */
     public Deck(long seed) {
         cards = new ArrayList<>();
         rand = new Random();

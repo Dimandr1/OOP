@@ -3,7 +3,6 @@ package ru.nsu.stolyarov;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.Random;
 
 class DeckTest {
@@ -77,7 +76,7 @@ class DeckTest {
         assertEquals(randCard.value, topCard.value);
         assertEquals(randCard.suit, topCard.suit);
 
-        seed = 1;
+        seed = 0;
         testDeckSecond = new Deck(seed);
         testDeckSecond.remakeDeck(1);
         testDeckSecond.reshuffle();

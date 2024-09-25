@@ -15,6 +15,9 @@ public class Blackjack {
     public int playerScore;
     public int casinoScore;
 
+    /**
+     * Инициализация параметров.
+     */
     public Blackjack() {
         round = 0;
         roundGoes = false;
@@ -47,10 +50,10 @@ public class Blackjack {
      * Начало новой игры.
      */
     public void newGame() {
-        boolean continuePlaying = true;
         round = 0;
         playerScore = 0;
         casinoScore = 0;
+        boolean continuePlaying = true;
         while (continuePlaying) {
             System.out.print("How many decks to use? [enter natural number]: ");
             int decks = input.nextInt();
