@@ -1,12 +1,13 @@
 package ru.nsu.stolyarov;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class VariableTest {
+import org.junit.jupiter.api.Test;
+
+
+class   VariableTest {
     @Test
-    void test(){
+    void test() {
 
         Variable testVar = new Variable("x");
         assertEquals("x", testVar.print());

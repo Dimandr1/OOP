@@ -1,12 +1,13 @@
 package ru.nsu.stolyarov;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NumberTest {
     @Test
-    void test(){
+    void test() {
 
         Number testNum = new Number(5);
         assertEquals("5", testNum.print());

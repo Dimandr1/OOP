@@ -1,12 +1,13 @@
 package ru.nsu.stolyarov;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MulTest {
     @Test
-    void test(){
+    void test() {
         Mul testMul = new Mul(new Number(5), new Number(20));
         assertEquals("(5*20)", testMul.print());
         assertEquals(100, testMul.eval(""));

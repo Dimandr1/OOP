@@ -3,26 +3,30 @@ package ru.nsu.stolyarov;
 /**
  * Бинарное умножение.
  */
-public class Mul extends Expression{
+public class Mul extends Expression {
     private Expression first, second;
 
     /**
      * Инициализация бинарного умножения.
-     * @param first - выражение слева от знака
+     *
+     * @param first  - выражение слева от знака
      * @param second - выражение справа от знака
      */
-    public Mul(Expression first, Expression second){
+    public Mul(Expression first, Expression second) {
         this.first = first;
         this.second = second;
     }
-    public String print(){
+
+    public String print() {
         return "(" + first.print() + "*" + second.print() + ")";
     }
-    public Expression derivative(String var){
+
+    public Expression derivative(String var) {
         return new Add(new Mul(first.derivative(var), second),
                 new Mul(first, second.derivative(var)));
     }
-    public int eval(String vals){
+
+    public int eval(String vals) {
         return first.eval(vals) * second.eval(vals);
     }
 }

@@ -6,12 +6,14 @@ package ru.nsu.stolyarov;
 public abstract class Expression {
     /**
      * Преобразование выражения в строковый вид.
+     *
      * @return - выражение в виде строки
      */
     public abstract String print();
 
     /**
      * Взятие производной от выражения.
+     *
      * @param var - переменная, по которой берется производная
      * @return - производная выражения
      */
@@ -19,6 +21,7 @@ public abstract class Expression {
 
     /**
      * Получить численное значение выражения.
+     *
      * @param vals - означивание всех переменных
      * @return - значение выражения
      */

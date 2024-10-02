@@ -23,4 +23,4 @@ jacocoTestReport {
     reports {
         xml.required = true
     }
-}       
+}

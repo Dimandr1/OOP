@@ -1,12 +1,13 @@
 package ru.nsu.stolyarov;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DivTest {
     @Test
-    void test(){
+    void test() {
         Div testDiv = new Div(new Number(20), new Number(5));
         assertEquals("(20/5)", testDiv.print());
         assertEquals(4, testDiv.eval(""));

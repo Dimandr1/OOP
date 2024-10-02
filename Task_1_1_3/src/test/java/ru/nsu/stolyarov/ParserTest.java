@@ -1,12 +1,13 @@
 package ru.nsu.stolyarov;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserTest {
     @Test
-    void test(){
+    void test() {
         Parser parser = new Parser();
         Expression testExp;
 

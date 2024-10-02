@@ -1,12 +1,13 @@
 package ru.nsu.stolyarov;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class SubTest {
     @Test
-    void test(){
+    void test() {
         Sub testSub = new Sub(new Number(5), new Number(20));
         assertEquals("(5-20)", testSub.print());
         assertEquals(-15, testSub.eval(""));
