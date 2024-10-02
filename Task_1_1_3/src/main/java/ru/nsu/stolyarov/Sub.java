@@ -4,7 +4,8 @@ package ru.nsu.stolyarov;
  * Бинарное вычитание.
  */
 public class Sub extends Expression {
-    private Expression first, second;
+    private Expression first;
+    private Expression second;
 
     /**
      * Инициализация бинарного вычитания.

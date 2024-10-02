@@ -1,10 +1,11 @@
 package ru.nsu.stolyarov;
 
 /**
- * Бинарное деление
+ * Бинарное деление.
  */
 public class Div extends Expression {
-    private Expression first, second;
+    private Expression first;
+    private Expression second;
 
     /**
      * Инициализация бинарного деления.

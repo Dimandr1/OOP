@@ -4,7 +4,8 @@ package ru.nsu.stolyarov;
  * Бинарное умножение.
  */
 public class Mul extends Expression {
-    private Expression first, second;
+    private Expression first;
+    private Expression second;
 
     /**
      * Инициализация бинарного умножения.
