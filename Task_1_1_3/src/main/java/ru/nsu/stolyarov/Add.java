@@ -8,7 +8,7 @@ public class Add extends Expression {
     private Expression second;
 
     /**
-     * Инициализация бинарного сложения
+     * Инициализация бинарного сложения.
      *
      * @param first  - выражение слева от знака
      * @param second - выражение справа от знака

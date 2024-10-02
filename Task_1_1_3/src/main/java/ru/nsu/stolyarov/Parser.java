@@ -26,7 +26,8 @@ public class Parser {
     private Expression parseExpressionHelper(String input) {
         if (input.charAt(index) >= '0' && input.charAt(index) <= '9') {
             int ans = 0;
-            for (; index < input.length() && input.charAt(index) >= '0' && input.charAt(index) <= '9';
+            for (; index < input.length() && input.charAt(index) >= '0'
+                    && input.charAt(index) <= '9';
                  index++) {
                 ans *= 10;
                 ans += input.charAt(index) - '0';

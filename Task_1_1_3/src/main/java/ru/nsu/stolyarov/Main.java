@@ -16,10 +16,10 @@ public class Main {
     public static void main(String[] args) {
         Parser parser = new Parser();
         Scanner scan = new Scanner(System.in);
-        System.out.println("Commands:\n1. new - enter new expression\n" +
-                "2. eval - evaluate current expression\n" +
-                "3. der - take a derivative of the function" +
-                "4. anything else will end the prograg");
+        System.out.println("Commands:\n1. new - enter new expression\n"
+                + "2. eval - evaluate current expression\n"
+                + "3. der - take a derivative of the function"
+                + "4. anything else will end the prograg");
         boolean cont = true;
         Expression currentExpression = null;
         while (cont) {
@@ -36,8 +36,8 @@ public class Main {
                 if (currentExpression == null) {
                     System.out.println("No current expression");
                 } else {
-                    System.out.println("Enter values of variables " +
-                            "(or leave empty if there are no variables:");
+                    System.out.println("Enter values of variables "
+                            + "(or leave empty if there are no variables:");
                     scan.nextLine();
                     String vals = scan.nextLine();
                     System.out.println(currentExpression.eval(vals));
