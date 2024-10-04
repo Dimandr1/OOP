@@ -280,7 +280,7 @@ extends <a href="Expression.html" title="class in ru.nsu.stolyarov">Expression</
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Expression.html#derivative(java.lang.String)">derivative</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.stolyarov">Expression</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>var</code> - - переменная, по которой берется производная</dd>
+<dd><code>var</code> - - имя переменной, по которой берется производная</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>- производная выражения</dd>
 </dl>
@@ -299,7 +299,8 @@ extends <a href="Expression.html" title="class in ru.nsu.stolyarov">Expression</
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="Expression.html#eval(java.lang.String)">eval</a></code>&nbsp;in class&nbsp;<code><a href="Expression.html" title="class in ru.nsu.stolyarov">Expression</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>vals</code> - - означивание всех переменных</dd>
+<dd><code>vals</code> - - строка в виде "var1 = val1; var2 = val2; ...; varN = valN",
+             где varI - имя переменной, а valI - её целочисленное значение.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>- значение выражения</dd>
 </dl>
