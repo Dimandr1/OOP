@@ -14,7 +14,7 @@ public abstract class Expression {
     /**
      * Взятие производной от выражения.
      *
-     * @param var - переменная, по которой берется производная
+     * @param var - имя переменной, по которой берется производная
      * @return - производная выражения
      */
     public abstract Expression derivative(String var);
@@ -22,7 +22,8 @@ public abstract class Expression {
     /**
      * Получить численное значение выражения.
      *
-     * @param vals - означивание всех переменных
+     * @param vals - строка в виде "var1 = val1; var2 = val2; ...; varN = valN",
+     *             где varI - имя переменной, а valI - её целочисленное значение.       
      * @return - значение выражения
      */
     public abstract int eval(String vals);
