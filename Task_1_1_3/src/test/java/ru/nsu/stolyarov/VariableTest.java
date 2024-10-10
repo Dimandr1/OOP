@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 
-class   VariableTest {
+class VariableTest {
     @Test
     void test() {
 
@@ -41,7 +41,7 @@ class   VariableTest {
 
         testVar = new Variable("abab");
         assertEquals("abab", testVar.print());
-                    assertEquals(0, testVar.eval("vava = -505123"));
+        assertEquals(0, testVar.eval("vava = -505123"));
         assertEquals(-505, testVar.eval("ababab = 123; abab = -505"));
 
     }

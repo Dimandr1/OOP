@@ -32,12 +32,12 @@ public class Parser {
                 ans *= 10;
                 ans += input.charAt(index) - '0';
             }
-            if(index < input.length() && input.charAt(index) == '.'){
+            if (index < input.length() && input.charAt(index) == '.') {
                 double coef = 1;
                 index++;
-                for(; index < input.length() && input.charAt(index) >= '0'
+                for (; index < input.length() && input.charAt(index) >= '0'
                         && input.charAt(index) <= '9';
-                    index++){
+                     index++) {
                     coef *= 10;
                     ans += (input.charAt(index) - '0') / coef;
                 }
@@ -53,12 +53,12 @@ public class Parser {
                     ans *= 10;
                     ans -= input.charAt(index) - '0';
                 }
-                if(index < input.length() && input.charAt(index) == '.'){
+                if (index < input.length() && input.charAt(index) == '.') {
                     double coef = 1;
                     index++;
-                    for(; index < input.length() && input.charAt(index) >= '0'
+                    for (; index < input.length() && input.charAt(index) >= '0'
                             && input.charAt(index) <= '9';
-                        index++){
+                         index++) {
                         coef *= 10;
                         ans -= (input.charAt(index) - '0') / coef;
                     }
