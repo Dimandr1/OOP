@@ -4,14 +4,14 @@ package ru.nsu.stolyarov;
  * Константа.
  */
 public class Number extends Expression {
-    private int value;
+    private double value;
 
     /**
      * Инициализация константы.
      *
      * @param value - значение константы
      */
-    public Number(int value) {
+    public Number(double value) {
         this.value = value;
     }
 
@@ -27,7 +27,7 @@ public class Number extends Expression {
         return new Number(0);
     }
 
-    public int eval(String vals) {
+    public double eval(String vals) {
         return value;
     }
 }

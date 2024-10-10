@@ -26,7 +26,7 @@ public class Add extends Expression {
         return new Add(first.derivative(var), second.derivative(var));
     }
 
-    public int eval(String vals) {
+    public double eval(String vals) {
         return first.eval(vals) + second.eval(vals);
     }
 }

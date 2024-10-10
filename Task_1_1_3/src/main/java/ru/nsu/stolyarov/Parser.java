@@ -25,23 +25,43 @@ public class Parser {
      */
     private Expression parseExpressionHelper(String input) {
         if (input.charAt(index) >= '0' && input.charAt(index) <= '9') {
-            int ans = 0;
+            double ans = 0;
             for (; index < input.length() && input.charAt(index) >= '0'
                     && input.charAt(index) <= '9';
                  index++) {
                 ans *= 10;
                 ans += input.charAt(index) - '0';
             }
+            if(index < input.length() && input.charAt(index) == '.'){
+                double coef = 1;
+                index++;
+                for(; index < input.length() && input.charAt(index) >= '0'
+                        && input.charAt(index) <= '9';
+                    index++){
+                    coef *= 10;
+                    ans += (input.charAt(index) - '0') / coef;
+                }
+            }
             return new Number(ans);
         } else if (input.charAt(index) == '(') {
             index++;
             if (input.charAt(index) == '-') {
-                int ans = 0;
+                double ans = 0;
                 index++;
                 for (; index < input.length() && input.charAt(index) >= '0'
                         && input.charAt(index) <= '9'; index++) {
                     ans *= 10;
                     ans -= input.charAt(index) - '0';
+                }
+                if(index < input.length() && input.charAt(index) == '.'){
+                    double coef = 1;
+                    index++;
+                    for(; index < input.length() && input.charAt(index) >= '0'
+                            && input.charAt(index) <= '9';
+                        index++){
+                        coef *= 10;
+                        ans -= (input.charAt(index) - '0') / coef;
+                    }
                 }
                 index++;
                 return new Number(ans);

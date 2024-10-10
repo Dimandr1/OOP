@@ -27,7 +27,7 @@ public class Mul extends Expression {
                 new Mul(first, second.derivative(var)));
     }
 
-    public int eval(String vals) {
+    public double eval(String vals) {
         return first.eval(vals) * second.eval(vals);
     }
 }

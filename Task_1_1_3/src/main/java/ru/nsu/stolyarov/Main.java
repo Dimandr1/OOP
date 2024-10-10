@@ -37,7 +37,7 @@ public class Main {
                     System.out.println("No current expression");
                 } else {
                     System.out.println("Enter values of variables "
-                            + "(or leave empty if there are no variables:");
+                            + "(or leave empty if there are no variables):");
                     scan.nextLine();
                     String vals = scan.nextLine();
                     System.out.println(currentExpression.eval(vals));

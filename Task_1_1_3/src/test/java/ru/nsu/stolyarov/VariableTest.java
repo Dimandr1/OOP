@@ -30,5 +30,19 @@ class   VariableTest {
         assertEquals("abab", testVar.print());
         assertEquals(-505123, testVar.eval("abab = -505123"));
         assertEquals(-505, testVar.eval("ababab = 123; abab = -505"));
+
+        testVar = new Variable("abab");
+        assertEquals("abab", testVar.print());
+        assertEquals(-505123.123, testVar.eval("abab = -505123.123"));
+
+        testVar = new Variable("abab");
+        assertEquals("abab", testVar.print());
+        assertEquals(5123.1, testVar.eval("abab = 5123.1"));
+
+        testVar = new Variable("abab");
+        assertEquals("abab", testVar.print());
+                    assertEquals(0, testVar.eval("vava = -505123"));
+        assertEquals(-505, testVar.eval("ababab = 123; abab = -505"));
+
     }
 }

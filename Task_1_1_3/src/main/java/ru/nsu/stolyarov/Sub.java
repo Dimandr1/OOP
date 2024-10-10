@@ -26,7 +26,7 @@ public class Sub extends Expression {
         return new Sub(first.derivative(var), second.derivative(var));
     }
 
-    public int eval(String vals) {
+    public double eval(String vals) {
         return first.eval(vals) - second.eval(vals);
     }
 

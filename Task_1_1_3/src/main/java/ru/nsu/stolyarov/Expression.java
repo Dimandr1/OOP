@@ -23,8 +23,8 @@ public abstract class Expression {
      * Получить численное значение выражения.
      *
      * @param vals - строка в виде "var1 = val1; var2 = val2; ...; varN = valN",
-     *             где varI - имя переменной, а valI - её целочисленное значение.       
+     *             где varI - имя переменной, а valI - её целочисленное значение.
      * @return - значение выражения
      */
-    public abstract int eval(String vals);
+    public abstract double eval(String vals);
 }
