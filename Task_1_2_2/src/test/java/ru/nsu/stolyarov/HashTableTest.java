@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 class HashTableTest {
     @Test
-    void test(){
+    void test() {
         HashTable<String, Integer> testingTable = new HashTable<String, Integer>();
         testingTable.put("one", 1);
         testingTable.put("three", 3);
