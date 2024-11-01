@@ -16,7 +16,6 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     int totalElements;
     int curSize;
     int iterators;
-    ArrayList<Pair<K, V>> cu1r;
 
     /**
      * Инициализация таблицы.
@@ -25,7 +24,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         curSize = 8;
         table = new ArrayList<>(curSize);
         for (int i = 0; i < curSize; i++) {
-            table.add(new ArrayList<Pair<K, V>>());
+            table.add(new ArrayList<>());
         }
         totalElements = 0;
         iterators = 0;
@@ -58,7 +57,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         if (totalElements * 2 >= curSize) {
             ArrayList<ArrayList<Pair<K, V>>> newTable = new ArrayList<>(curSize * 2);
             for (int i = 0; i < curSize * 2; i++) {
-                newTable.add(new ArrayList<Pair<K, V>>());
+                newTable.add(new ArrayList<>());
             }
             for (Pair<K, V> pair : this) {
                 ArrayList<Pair<K, V>> cur = newTable.get(hashFunc(pair.first));
@@ -69,7 +68,8 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         }
 
         if (exists(key)) {
-            throw new IllegalArgumentException("Element with " + key + " key is already in table");
+            throw new IllegalArgumentException("Element with " + key
+                    + " key is already in table");
         }
         totalElements++;
         ArrayList<Pair<K, V>> cur = table.get(hashFunc(key));
@@ -178,11 +178,12 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * @param <K> - тип ключа
      * @param <V> - тип значения
      */
-    private class TableIterator<K, V> implements Iterator<Pair<K, V>> {
+    public class TableIterator<K, V> implements Iterator<Pair<K, V>> {
         int itered;
         int curHash;
         int curCollision;
         boolean active;
+
         private TableIterator() {
             itered = 0;
             curHash = 0;
@@ -214,7 +215,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
                     }
                 }
             }
-            Pair<K, V> ret = (Pair<K, V>) table.get(curHash).get(curCollision); //чзх
+            Pair<K, V> ret = (Pair<K, V>) table.get(curHash).get(curCollision);
             curCollision++;
             itered++;
             if (active && !hasNext()) {
