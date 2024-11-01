@@ -184,7 +184,9 @@ implements java.util.Iterator&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove()">remove</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Удаление последнего взятого итератором элемента</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -258,12 +260,14 @@ implements java.util.Iterator&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <pre class="methodSignature">public&nbsp;void&nbsp;remove()
             throws java.util.ConcurrentModificationException,
                    java.util.NoSuchElementException</pre>
+<div class="block">Удаление последнего взятого итератором элемента</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>remove</code>&nbsp;in interface&nbsp;<code>java.util.Iterator&lt;<a href="HashTable.TableIterator.html" title="type parameter in HashTable.TableIterator">K</a>&gt;</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.util.ConcurrentModificationException</code></dd>
-<dd><code>java.util.NoSuchElementException</code></dd>
+<dd><code>java.util.ConcurrentModificationException</code> - при попытке удаления во время итерирования</dd>
+<dd><code>java.util.NoSuchElementException</code> - при попытке удаления,
+ пока ни один элемент не обработан</dd>
 </dl>
 </li>
 </ul>
