@@ -47,9 +47,9 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * @param key   - ключ
      * @param value - значение
      * @throws IllegalArgumentException        - выьрасывается при наличии элемента
-     * с данным ключом
+     *                                         с данным ключом
      * @throws ConcurrentModificationException - выбрасывается при попытке изменеия
-     * таблицы во время итерации
+     *                                         таблицы во время итерации
      */
     public void put(K key, V value) throws IllegalArgumentException,
             ConcurrentModificationException {
@@ -229,9 +229,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
 
         /**
          * Удаление последнего взятого итератором элемента
+         *
          * @throws ConcurrentModificationException при попытке удаления во время итерирования
-         * @throws NoSuchElementException при попытке удаления,
-         * пока ни один элемент не обработан
+         * @throws NoSuchElementException          при попытке удаления,
+         *                                         пока ни один элемент не обработан
          */
         public void remove() throws ConcurrentModificationException,
                 NoSuchElementException {
