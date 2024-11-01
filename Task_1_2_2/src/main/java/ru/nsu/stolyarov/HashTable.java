@@ -46,11 +46,11 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      *
      * @param key   - ключ
      * @param value - значение
-     * @throws IllegalArgumentException        - выьрасывается при наличии элемента
-     *                                         с данным ключом
+     * @throws IllegalArgumentException - выьрасывается при наличии элемента
+     *                                  с данным ключом
      */
-    public void put(K key, V value) throws IllegalArgumentException{
-        for(TableIterator iter : iterators){
+    public void put(K key, V value) throws IllegalArgumentException {
+        for (TableIterator iter : iterators) {
             iter.broken = true;
         }
         if (totalElements * 2 >= curSize) {
@@ -79,10 +79,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * Удалить элемент по заданному ключу.
      *
      * @param key - ключ
-     * @throws NoSuchElementException          - при отсутствии элемента с заданным ключом
+     * @throws NoSuchElementException - при отсутствии элемента с заданным ключом
      */
     public void del(K key) throws NoSuchElementException, ConcurrentModificationException {
-        for(TableIterator iter : iterators){
+        for (TableIterator iter : iterators) {
             iter.broken = true;
         }
         ArrayList<Pair<K, V>> cur = table.get((hashFunc(key)));
@@ -138,9 +138,9 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      *
      * @param key   - ключ
      * @param value - новое значение
-     * @throws NoSuchElementException          - при отсутствии элемента с заданным ключом
+     * @throws NoSuchElementException - при отсутствии элемента с заданным ключом
      */
-    public void update(K key, V value) throws NoSuchElementException{
+    public void update(K key, V value) throws NoSuchElementException {
         ArrayList<Pair<K, V>> cur = table.get((hashFunc(key)));
         boolean b = true;
         for (int i = 0; i < cur.size(); i++) {
@@ -198,8 +198,8 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
          *
          * @return - следующая пара
          */
-        public Pair<K, V> next() throws ConcurrentModificationException{
-            if(broken){
+        public Pair<K, V> next() throws ConcurrentModificationException {
+            if (broken) {
                 throw new ConcurrentModificationException("The table was modified");
             }
             if (table.get(curHash).size() <= curCollision) {
@@ -232,8 +232,8 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
             if (itered == 0) {
                 throw new NoSuchElementException("Did not itered yet");
             }
-            for(TableIterator iter : iterators){
-                if(iter != this){
+            for (TableIterator iter : iterators) {
+                if (iter != this) {
                     iter.broken = true;
                 }
             }
@@ -278,9 +278,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
 
     /**
      * Функция для получения количества элементов.
+     *
      * @return количество элементов в таблице
      */
-    public int getTotalElements(){
+    public int getTotalElements() {
         return totalElements;
     }
 
