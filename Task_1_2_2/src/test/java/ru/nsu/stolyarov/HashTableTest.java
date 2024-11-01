@@ -34,5 +34,11 @@ class HashTableTest {
         anotherTable.put("three", 3);
         assertEquals(true, testingTable.tableEquals(anotherTable));
 
+        HashTable.TableIterator testIter = testingTable.iterator();
+        while (testIter.hasNext()) {
+            testIter.next();
+        }
+        testIter.remove();
+        assertEquals(3, testingTable.totalElements);
     }
 }

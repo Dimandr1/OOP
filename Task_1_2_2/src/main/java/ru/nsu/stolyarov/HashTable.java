@@ -224,6 +224,18 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
             }
             return ret;
         }
+
+        public void remove() throws ConcurrentModificationException,
+                NoSuchElementException {
+            if (iterators > 1 || (iterators > 0 && !active)) {
+                throw new ConcurrentModificationException("No removing while" +
+                        " other iterators work");
+            }
+            if (itered == 0) {
+                throw new NoSuchElementException("Did not itered yet");
+            }
+            del(table.get(curHash).get(curCollision - 1).first);
+        }
     }
 
     /**
@@ -260,4 +272,5 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         }
         return ret;
     }
+
 }
