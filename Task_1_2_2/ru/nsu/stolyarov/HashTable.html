@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -233,13 +233,20 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getTotalElements()">getTotalElements</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Функция для получения количества элементов.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="HashTable.TableIterator.html" title="class in ru.nsu.stolyarov">HashTable.TableIterator</a>&lt;<a href="HashTable.html" title="type parameter in HashTable">K</a>,&#8203;<a href="HashTable.html" title="type parameter in HashTable">V</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Создание итератора.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#put(K,V)">put</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
    <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</code></th>
@@ -247,21 +254,21 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <div class="block">Добавить новую пару "ключ-значение" в таблицу.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#tableEquals(ru.nsu.stolyarov.HashTable)">tableEquals</a></span>&#8203;(<a href="HashTable.html" title="class in ru.nsu.stolyarov">HashTable</a>&nbsp;anotherTable)</code></th>
 <td class="colLast">
 <div class="block">Проверка на равенство с другой таблицей.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toStr()">toStr</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Преборазование таблицы в строку для последующего вывода.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#update(K,V)">update</a></span>&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
       <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)</code></th>
@@ -330,8 +337,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <h4>put</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;put&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
                 <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)
-         throws java.lang.IllegalArgumentException,
-                java.util.ConcurrentModificationException</pre>
+         throws java.lang.IllegalArgumentException</pre>
 <div class="block">Добавить новую пару "ключ-значение" в таблицу.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -339,9 +345,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <dd><code>value</code> - - значение</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.IllegalArgumentException</code> - - выьрасывается при наличии элемента
-                                         с данным ключом</dd>
-<dd><code>java.util.ConcurrentModificationException</code> - - выбрасывается при попытке изменеия
-                                         таблицы во время итерации</dd>
+                                  с данным ключом</dd>
 </dl>
 </li>
 </ul>
@@ -362,7 +366,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <dd><code>key</code> - - ключ</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.util.NoSuchElementException</code> - - при отсутствии элемента с заданным ключом</dd>
-<dd><code>java.util.ConcurrentModificationException</code> - - при попытке удалить во время итерации</dd>
+<dd><code>java.util.ConcurrentModificationException</code></dd>
 </dl>
 </li>
 </ul>
@@ -415,8 +419,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <h4>update</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;update&#8203;(<a href="HashTable.html" title="type parameter in HashTable">K</a>&nbsp;key,
                    <a href="HashTable.html" title="type parameter in HashTable">V</a>&nbsp;value)
-            throws java.util.NoSuchElementException,
-                   java.util.ConcurrentModificationException</pre>
+            throws java.util.NoSuchElementException</pre>
 <div class="block">Обновляет значение элемента с заданным ключом.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -424,7 +427,6 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <dd><code>value</code> - - новое значение</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.util.NoSuchElementException</code> - - при отсутствии элемента с заданным ключом</dd>
-<dd><code>java.util.ConcurrentModificationException</code> - - при попытке модификации во время итерирования</dd>
 </dl>
 </li>
 </ul>
@@ -463,7 +465,7 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <a id="toStr()">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>toStr</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toStr()</pre>
@@ -471,6 +473,20 @@ implements java.lang.Iterable&lt;<a href="Pair.html" title="class in ru.nsu.stol
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>- таблица в виде строки</dd>
+</dl>
+</li>
+</ul>
+<a id="getTotalElements()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getTotalElements</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getTotalElements()</pre>
+<div class="block">Функция для получения количества элементов.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>количество элементов в таблице</dd>
 </dl>
 </li>
 </ul>
