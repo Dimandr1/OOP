@@ -39,6 +39,6 @@ class HashTableTest {
             testIter.next();
         }
         testIter.remove();
-        assertEquals(3, testingTable.totalElements);
+        assertEquals(3, testingTable.getTotalElements());
     }
 }

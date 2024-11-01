@@ -13,9 +13,9 @@ import java.util.NoSuchElementException;
  */
 public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     ArrayList<ArrayList<Pair<K, V>>> table;
-    int totalElements;
-    int curSize;
-    int iterators;
+    private int totalElements;
+    private int curSize;
+    private ArrayList<TableIterator> iterators;
 
     /**
      * Инициализация таблицы.
@@ -27,7 +27,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
             table.add(new ArrayList<>());
         }
         totalElements = 0;
-        iterators = 0;
+        iterators = new ArrayList<>();
     }
 
     /**
@@ -48,13 +48,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * @param value - значение
      * @throws IllegalArgumentException        - выьрасывается при наличии элемента
      *                                         с данным ключом
-     * @throws ConcurrentModificationException - выбрасывается при попытке изменеия
-     *                                         таблицы во время итерации
      */
-    public void put(K key, V value) throws IllegalArgumentException,
-            ConcurrentModificationException {
-        if (iterators != 0) {
-            throw new ConcurrentModificationException("No edit while iterating!");
+    public void put(K key, V value) throws IllegalArgumentException{
+        for(TableIterator iter : iterators){
+            iter.broken = true;
         }
         if (totalElements * 2 >= curSize) {
             ArrayList<ArrayList<Pair<K, V>>> newTable = new ArrayList<>(curSize * 2);
@@ -83,11 +80,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      *
      * @param key - ключ
      * @throws NoSuchElementException          - при отсутствии элемента с заданным ключом
-     * @throws ConcurrentModificationException - при попытке удалить во время итерации
      */
     public void del(K key) throws NoSuchElementException, ConcurrentModificationException {
-        if (iterators != 0) {
-            throw new ConcurrentModificationException("No edit while iterating!");
+        for(TableIterator iter : iterators){
+            iter.broken = true;
         }
         ArrayList<Pair<K, V>> cur = table.get((hashFunc(key)));
         boolean b = true;
@@ -143,13 +139,8 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * @param key   - ключ
      * @param value - новое значение
      * @throws NoSuchElementException          - при отсутствии элемента с заданным ключом
-     * @throws ConcurrentModificationException - при попытке модификации во время итерирования
      */
-    public void update(K key, V value) throws NoSuchElementException,
-            ConcurrentModificationException {
-        if (iterators != 0) {
-            throw new ConcurrentModificationException("No edit while iterating!");
-        }
+    public void update(K key, V value) throws NoSuchElementException{
         ArrayList<Pair<K, V>> cur = table.get((hashFunc(key)));
         boolean b = true;
         for (int i = 0; i < cur.size(); i++) {
@@ -170,7 +161,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      */
     public TableIterator<K, V> iterator() {
         TableIterator<K, V> ret = new TableIterator<>();
-        iterators++;
+        iterators.add(ret);
         return ret;
     }
 
@@ -181,16 +172,16 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * @param <V> - тип значения
      */
     public class TableIterator<K, V> implements Iterator<Pair<K, V>> {
-        int itered;
-        int curHash;
-        int curCollision;
-        boolean active;
+        private int itered;
+        private int curHash;
+        private int curCollision;
+        public boolean broken;
 
         private TableIterator() {
             itered = 0;
             curHash = 0;
             curCollision = 0;
-            active = true;
+            broken = false;
         }
 
         /**
@@ -207,7 +198,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
          *
          * @return - следующая пара
          */
-        public Pair<K, V> next() {
+        public Pair<K, V> next() throws ConcurrentModificationException{
+            if(broken){
+                throw new ConcurrentModificationException("The table was modified");
+            }
             if (table.get(curHash).size() <= curCollision) {
                 for (int i = curHash + 1; i < curSize; i++) {
                     if (table.get(i).size() > 0) {
@@ -220,10 +214,6 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
             Pair<K, V> ret = (Pair<K, V>) table.get(curHash).get(curCollision);
             curCollision++;
             itered++;
-            if (active && !hasNext()) {
-                iterators--;
-                active = false;
-            }
             return ret;
         }
 
@@ -236,12 +226,16 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
          */
         public void remove() throws ConcurrentModificationException,
                 NoSuchElementException {
-            if (iterators > 1 || (iterators > 0 && !active)) {
-                throw new ConcurrentModificationException("No removing while"
-                        + " other iterators work");
+            if (broken) {
+                throw new ConcurrentModificationException("The table was modified");
             }
             if (itered == 0) {
                 throw new NoSuchElementException("Did not itered yet");
+            }
+            for(TableIterator iter : iterators){
+                if(iter != this){
+                    iter.broken = true;
+                }
             }
             del(table.get(curHash).get(curCollision - 1).first);
         }
@@ -280,6 +274,14 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
             ret += pair.first.toString() + " = " + pair.second.toString() + "\n";
         }
         return ret;
+    }
+
+    /**
+     * Функция для получения количества элементов.
+     * @return количество элементов в таблице
+     */
+    public int getTotalElements(){
+        return totalElements;
     }
 
 }
