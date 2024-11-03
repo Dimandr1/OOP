@@ -15,7 +15,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
     ArrayList<ArrayList<Pair<K, V>>> table;
     private int totalElements;
     private int curSize;
-    private ArrayList<TableIterator> iterators;
+    private ArrayList<TableIterator> validIterators;
 
     /**
      * Инициализация таблицы.
@@ -27,7 +27,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
             table.add(new ArrayList<>());
         }
         totalElements = 0;
-        iterators = new ArrayList<>();
+        validIterators = new ArrayList<>();
     }
 
     /**
@@ -50,9 +50,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      *                                  с данным ключом
      */
     public void put(K key, V value) throws IllegalArgumentException {
-        for (TableIterator iter : iterators) {
+        for (TableIterator iter : validIterators) {
             iter.broken = true;
         }
+        validIterators = new ArrayList<>();
         if (totalElements * 2 >= curSize) {
             ArrayList<ArrayList<Pair<K, V>>> newTable = new ArrayList<>(curSize * 2);
             for (int i = 0; i < curSize * 2; i++) {
@@ -82,9 +83,10 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      * @throws NoSuchElementException - при отсутствии элемента с заданным ключом
      */
     public void del(K key) throws NoSuchElementException, ConcurrentModificationException {
-        for (TableIterator iter : iterators) {
+        for (TableIterator iter : validIterators) {
             iter.broken = true;
         }
+        validIterators = new ArrayList<>();
         ArrayList<Pair<K, V>> cur = table.get((hashFunc(key)));
         boolean b = true;
         for (int i = 0; i < cur.size(); i++) {
@@ -161,7 +163,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
      */
     public TableIterator<K, V> iterator() {
         TableIterator<K, V> ret = new TableIterator<>();
-        iterators.add(ret);
+        validIterators.add(ret);
         return ret;
     }
 
@@ -175,13 +177,15 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         private int itered;
         private int curHash;
         private int curCollision;
-        public boolean broken;
+        private boolean broken;
+        private boolean ableToRemove;
 
         private TableIterator() {
             itered = 0;
             curHash = 0;
             curCollision = 0;
             broken = false;
+            ableToRemove = false;
         }
 
         /**
@@ -214,6 +218,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
             Pair<K, V> ret = (Pair<K, V>) table.get(curHash).get(curCollision);
             curCollision++;
             itered++;
+            ableToRemove = true;
             return ret;
         }
 
@@ -222,22 +227,20 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
          *
          * @throws ConcurrentModificationException при попытке удаления во время итерирования
          * @throws NoSuchElementException          при попытке удаления,
-         *                                         пока ни один элемент не обработан
+         *                                         пока элемент не обработан
          */
         public void remove() throws ConcurrentModificationException,
                 NoSuchElementException {
             if (broken) {
                 throw new ConcurrentModificationException("The table was modified");
             }
-            if (itered == 0) {
-                throw new NoSuchElementException("Did not itered yet");
-            }
-            for (TableIterator iter : iterators) {
-                if (iter != this) {
-                    iter.broken = true;
-                }
+            if (!ableToRemove) {
+                throw new NoSuchElementException("No passed element");
             }
             del(table.get(curHash).get(curCollision - 1).first);
+            validIterators.add(this);
+            broken = false;
+            ableToRemove = false;
         }
     }
 
