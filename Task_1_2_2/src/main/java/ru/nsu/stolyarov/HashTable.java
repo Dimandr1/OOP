@@ -68,8 +68,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
         }
 
         if (exists(key)) {
-            throw new IllegalArgumentException("Element with " + key
-                    + " key is already in table");
+            throw new IllegalArgumentException("Element with " + key + " key is already in table");
         }
         totalElements++;
         ArrayList<Pair<K, V>> cur = table.get(hashFunc(key));
@@ -229,8 +228,7 @@ public class HashTable<K, V> implements Iterable<Pair<K, V>> {
          * @throws NoSuchElementException          при попытке удаления,
          *                                         пока элемент не обработан
          */
-        public void remove() throws ConcurrentModificationException,
-                NoSuchElementException {
+        public void remove() throws ConcurrentModificationException, NoSuchElementException {
             if (broken) {
                 throw new ConcurrentModificationException("The table was modified");
             }

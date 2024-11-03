@@ -35,7 +35,7 @@ class HashTableTest {
         assertEquals(true, testingTable.tableEquals(anotherTable));
 
         HashTable.TableIterator testIter = testingTable.iterator();
-        for(int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             testIter.next();
             testIter.remove();
             assertEquals(3 - i, testingTable.getTotalElements());
