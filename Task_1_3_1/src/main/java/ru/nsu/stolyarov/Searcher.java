@@ -17,8 +17,7 @@ public class Searcher {
      * @throws FileNotFoundException    если файл не удалось найти или открыть
      * @throws IllegalArgumentException если передана пустая подстрока
      */
-    public static String find(String filePath, String substring) throws FileNotFoundException,
-            IllegalArgumentException {
+    public static String find(String filePath, String substring) throws FileNotFoundException, IllegalArgumentException {
         File file = new File(filePath);
         if (!file.canRead()) {
             throw new FileNotFoundException("File does not exist or can't be read");
