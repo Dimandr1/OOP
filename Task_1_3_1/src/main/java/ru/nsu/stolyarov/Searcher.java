@@ -17,7 +17,8 @@ public class Searcher {
      * @throws FileNotFoundException    если файл не удалось найти или открыть
      * @throws IllegalArgumentException если передана пустая подстрока
      */
-    public static String find(String filePath, String substring) throws FileNotFoundException, IllegalArgumentException {
+    public static String find(String filePath, String substring) throws FileNotFoundException,
+            IllegalArgumentException {
         File file = new File(filePath);
         if (!file.canRead()) {
             throw new FileNotFoundException("File does not exist or can't be read");
@@ -53,7 +54,8 @@ public class Searcher {
             int next = -2;
             int cur = 0;
             String curSubstr = "";
-            try (InputStreamReader inp = new InputStreamReader(new FileInputStream(file), "UTF-8")) {
+            try (InputStreamReader inp = new InputStreamReader(new FileInputStream(file),
+                    "UTF-8")) {
                 for (int i = 0; i < substring.length(); i++) {
                     try {
                         curSubstr += (char) inp.read();
