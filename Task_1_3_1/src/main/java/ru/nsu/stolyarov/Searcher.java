@@ -16,9 +16,10 @@ public class Searcher {
      * @return строка, описывающая индексы всех вхождений подстроки в файл
      * @throws FileNotFoundException    если файл не удалось найти или открыть
      * @throws IllegalArgumentException если передана пустая подстрока
+     * @throws IOException              ошибка при считывании из файла
      */
     public static String find(String filePath, String substring) throws FileNotFoundException,
-            IllegalArgumentException {
+            IllegalArgumentException, IOException {
         File file = new File(filePath);
         if (!file.canRead()) {
             throw new FileNotFoundException("File does not exist or can't be read");
@@ -26,47 +27,48 @@ public class Searcher {
         if (substring.length() == 0) {
             throw new IllegalArgumentException("substring can't be empty");
         }
-        ArrayList<Integer> ansList = getSubstrings(file, substring);
+        ArrayList<Long> ansList = getSubstrings(file, substring);
 
-        String ans = "[";
+        StringBuilder ans = new StringBuilder("[");
         for (int i = 0; i < ansList.size(); i++) {
-            ans += ansList.get(i).toString();
+            ans.append(ansList.get(i).toString());
             if (i != ansList.size() - 1) {
-                ans += ", ";
+                ans.append(", ");
             }
         }
-        ans += "]";
+        ans.append("]");
 
-        return ans;
+        return ans.toString();
     }
 
     /**
      * Ищем индексы всех вхождений подстроки в файл.
      *
-     * @param file      обрабатываемый фаил
-     * @param substring искомая подстрока
+     * @param file           обрабатываемый фаил
+     * @param enterSubstring искомая подстрока
      * @return список индексов вхождений
+     * @throws IOException ошибка при считывании из файла
      */
-    public static ArrayList<Integer> getSubstrings(File file, String substring) {
-        ArrayList<Integer> ans = new ArrayList<>();
-
-        if (file.length() >= substring.length()) {
+    public static ArrayList<Long> getSubstrings(File file, String enterSubstring)
+            throws IOException {
+        ArrayList<Long> ans = new ArrayList<>();
+        ArrayList<Integer> substring = new ArrayList<>();
+        for (int i = 0; i < enterSubstring.length(); i++) {
+            substring.add((int) enterSubstring.charAt(i));
+        }
+        if (file.length() >= substring.size()) {
             int next = -2;
-            int cur = 0;
-            String curSubstr = "";
+            Long cur = 0L;
+            ArrayList<Integer> curSubstr = new ArrayList<>();
             try (InputStreamReader inp = new InputStreamReader(new FileInputStream(file),
                     "UTF-8")) {
-                for (int i = 0; i < substring.length(); i++) {
-                    try {
-                        curSubstr += (char) inp.read();
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                for (int i = 0; i < enterSubstring.length(); i++) {
+                    curSubstr.add(inp.read());
                 }
                 do {
                     if (next != -2) {
-                        curSubstr = curSubstr.substring(1);
-                        curSubstr += (char) next;
+                        curSubstr.remove(0);
+                        curSubstr.add(next);
                     }
                     if (curSubstr.equals(substring)) {
                         ans.add(cur);
@@ -74,8 +76,6 @@ public class Searcher {
                     next = inp.read();
                     cur++;
                 } while (next != -1);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
         }
         return ans;

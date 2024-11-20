@@ -9,39 +9,28 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SearcherTest {
     @Test
-    void test() {
+    void test() throws IOException{
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("input.txt"), "UTF-8"))) {
             writer.write("абракадабра");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-        try {
+        File inputtxt = new File("input.txt");
+        ArrayList<Long> testList = new ArrayList<>();
+        testList.add(1L);
+        testList.add(8L);
+        assertEquals(testList, Searcher.getSubstrings(inputtxt, "бра"));
+        assertEquals("[1, 8]", Searcher.find("input.txt", "бра"));
+        assertEquals("[0, 7]", Searcher.find("input.txt", "аб"));
 
-            File inputtxt = new File("input.txt");
-            ArrayList<Integer> testList = new ArrayList<>();
-            testList.add(1);
-            testList.add(8);
-            assertEquals(testList, Searcher.getSubstrings(inputtxt, "бра"));
-            assertEquals("[1, 8]", Searcher.find("input.txt", "бра"));
-            assertEquals("[0, 7]", Searcher.find("input.txt", "аб"));
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("input.txt"), "UTF-8"))) {
             String base = "$¢€ƕ";
             writer.write(base);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-        try {
-            assertEquals("[3]", Searcher.find("input.txt", "ƕ"));
+        assertEquals("[3]", Searcher.find("input.txt", "ƕ"));
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
+
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("input.txt"), "UTF-8"))) {
             String base = "abbabaaaab";
@@ -49,15 +38,18 @@ class SearcherTest {
             for (int i = 0; i < n; i++) {
                 writer.write(base);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
-        try {
-            Searcher.find("input.txt", "aba");
+        Searcher.find("input.txt", "aba");
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("input.txt"), "UTF-8"))) {
+            String base = "123\uD83D\uDE00123\uD83D\uDE00";
+            writer.write(base);
         }
+        assertEquals("[3, 8]", Searcher.find("input.txt",  "\uD83D\uDE00"));
+
+
     }
 
 }
