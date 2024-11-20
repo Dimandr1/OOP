@@ -183,9 +183,9 @@ extends java.lang.Object</pre>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>static java.util.ArrayList&lt;java.lang.Integer&gt;</code></td>
+<td class="colFirst"><code>static java.util.ArrayList&lt;java.lang.Long&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSubstrings(java.io.File,java.lang.String)">getSubstrings</a></span>&#8203;(java.io.File&nbsp;file,
-             java.lang.String&nbsp;substring)</code></th>
+             java.lang.String&nbsp;enterSubstring)</code></th>
 <td class="colLast">
 <div class="block">Ищем индексы всех вхождений подстроки в файл.</div>
 </td>
@@ -242,7 +242,8 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public static&nbsp;java.lang.String&nbsp;find&#8203;(java.lang.String&nbsp;filePath,
                                     java.lang.String&nbsp;substring)
                              throws java.io.FileNotFoundException,
-                                    java.lang.IllegalArgumentException</pre>
+                                    java.lang.IllegalArgumentException,
+                                    java.io.IOException</pre>
 <div class="block">Функция для упрощения работы с getSubstrings.
  Находит ошибки в аргументах, сама открывает переданный фаил, возвращает в виде строки.</div>
 <dl>
@@ -254,6 +255,7 @@ extends java.lang.Object</pre>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.FileNotFoundException</code> - если файл не удалось найти или открыть</dd>
 <dd><code>java.lang.IllegalArgumentException</code> - если передана пустая подстрока</dd>
+<dd><code>java.io.IOException</code> - ошибка при считывании из файла</dd>
 </dl>
 </li>
 </ul>
@@ -263,15 +265,18 @@ extends java.lang.Object</pre>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getSubstrings</h4>
-<pre class="methodSignature">public static&nbsp;java.util.ArrayList&lt;java.lang.Integer&gt;&nbsp;getSubstrings&#8203;(java.io.File&nbsp;file,
-                                                                   java.lang.String&nbsp;substring)</pre>
+<pre class="methodSignature">public static&nbsp;java.util.ArrayList&lt;java.lang.Long&gt;&nbsp;getSubstrings&#8203;(java.io.File&nbsp;file,
+                                                                java.lang.String&nbsp;enterSubstring)
+                                                         throws java.io.IOException</pre>
 <div class="block">Ищем индексы всех вхождений подстроки в файл.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>file</code> - обрабатываемый фаил</dd>
-<dd><code>substring</code> - искомая подстрока</dd>
+<dd><code>enterSubstring</code> - искомая подстрока</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>список индексов вхождений</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.io.IOException</code> - ошибка при считывании из файла</dd>
 </dl>
 </li>
 </ul>
