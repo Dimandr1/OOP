@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SearcherTest {
     @Test
-    void test() throws IOException{
+    void test() throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("input.txt"), "UTF-8"))) {
             writer.write("абракадабра");
@@ -30,7 +30,6 @@ class SearcherTest {
         assertEquals("[3]", Searcher.find("input.txt", "ƕ"));
 
 
-
         try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream("input.txt"), "UTF-8"))) {
             String base = "abbabaaaab";
@@ -47,7 +46,7 @@ class SearcherTest {
             String base = "123\uD83D\uDE00123\uD83D\uDE00";
             writer.write(base);
         }
-        assertEquals("[3, 8]", Searcher.find("input.txt",  "\uD83D\uDE00"));
+        assertEquals("[3, 8]", Searcher.find("input.txt", "\uD83D\uDE00"));
 
 
     }
