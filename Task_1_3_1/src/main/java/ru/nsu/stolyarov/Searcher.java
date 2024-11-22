@@ -47,7 +47,7 @@ public class Searcher {
      * @param b - первый байт символа юникода
      * @return количество байт в символе
      */
-    private static int CheckLen(byte b) {
+    private static int checkLen(byte b) {
         if ((b & 0b10000000) == 0) {
             return 1;
         } else if ((b & 0b11100000) == 0b11000000) {
