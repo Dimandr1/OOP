@@ -77,7 +77,7 @@ public class Searcher {
             byte curByte = bytes[i];
             Long tl = 0L;
             tl += curByte + (curByte < 0 ? 256 : 0);
-            int l = CheckLen(curByte);
+            int l = checkLen(curByte);
             for (int j = 1; j < l; j++) {
                 i++;
                 tl *= 8;
@@ -91,7 +91,7 @@ public class Searcher {
             while (curByte != -1) {
                 Long tl = 0L;
                 tl += curByte;
-                int l = CheckLen((byte) curByte);
+                int l = checkLen((byte) curByte);
                 for (int j = 1; j < l; j++) {
                     tl *= 8;
                     curByte = inp.read();
