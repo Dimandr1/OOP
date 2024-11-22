@@ -46,7 +46,7 @@ class SearcherTest {
             String base = "123\uD83D\uDE00123\uD83D\uDE00";
             writer.write(base);
         }
-        assertEquals("[3, 8]", Searcher.find("input.txt", "\uD83D\uDE00"));
+        assertEquals("[3, 7]", Searcher.find("input.txt", "\uD83D\uDE00"));
 
 
     }

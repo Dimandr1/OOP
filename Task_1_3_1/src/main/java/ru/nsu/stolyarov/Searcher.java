@@ -42,9 +42,27 @@ public class Searcher {
     }
 
     /**
+     * Получение количества байт в текущем символе юниокда по первому байту.
+     *
+     * @param b - первый байт символа юникода
+     * @return количество байт в символе
+     */
+    private static int CheckLen(byte b) {
+        if ((b & 0b10000000) == 0) {
+            return 1;
+        } else if ((b & 0b11100000) == 0b11000000) {
+            return 2;
+        } else if ((b & 0b11110000) == 0b11100000) {
+            return 3;
+        } else {
+            return 4;
+        }
+    }
+
+    /**
      * Ищем индексы всех вхождений подстроки в файл.
      *
-     * @param file           обрабатываемый фаил
+     * @param file           корректный обрабатываемый фаил в кодировке UTF-8
      * @param enterSubstring искомая подстрока
      * @return список индексов вхождений
      * @throws IOException ошибка при считывании из файла
@@ -52,30 +70,42 @@ public class Searcher {
     public static ArrayList<Long> getSubstrings(File file, String enterSubstring)
             throws IOException {
         ArrayList<Long> ans = new ArrayList<>();
-        ArrayList<Integer> substring = new ArrayList<>();
-        for (int i = 0; i < enterSubstring.length(); i++) {
-            substring.add((int) enterSubstring.charAt(i));
+        ArrayList<Long> rightString = new ArrayList<>();
+        ArrayList<Long> substring = new ArrayList<>();
+        byte[] bytes = enterSubstring.getBytes("UTF-8");
+        for (int i = 0; i < bytes.length; i++) {
+            byte curByte = bytes[i];
+            Long tl = 0L;
+            tl += curByte + (curByte < 0 ? 256 : 0);
+            int l = CheckLen(curByte);
+            for (int j = 1; j < l; j++) {
+                i++;
+                tl *= 8;
+                tl += bytes[i] + (bytes[i] < 0 ? 256 : 0);
+            }
+            rightString.add(tl);
         }
-        if (file.length() >= substring.size()) {
-            int next = -2;
-            Long cur = 0L;
-            ArrayList<Integer> curSubstr = new ArrayList<>();
-            try (InputStreamReader inp = new InputStreamReader(new FileInputStream(file),
-                    "UTF-8")) {
-                for (int i = 0; i < enterSubstring.length(); i++) {
-                    curSubstr.add(inp.read());
+        try (FileInputStream inp = new FileInputStream(file)) {
+            int curByte = inp.read();
+            Long cnt = -((long) rightString.size()) + 1;
+            while (curByte != -1) {
+                Long tl = 0L;
+                tl += curByte;
+                int l = CheckLen((byte) curByte);
+                for (int j = 1; j < l; j++) {
+                    tl *= 8;
+                    curByte = inp.read();
+                    tl += curByte;
                 }
-                do {
-                    if (next != -2) {
-                        curSubstr.remove(0);
-                        curSubstr.add(next);
-                    }
-                    if (curSubstr.equals(substring)) {
-                        ans.add(cur);
-                    }
-                    next = inp.read();
-                    cur++;
-                } while (next != -1);
+                substring.add(tl);
+                if (substring.size() > rightString.size()) {
+                    substring.remove(0);
+                }
+                if (substring.size() == rightString.size() && substring.equals(rightString)) {
+                    ans.add(cnt);
+                }
+                curByte = inp.read();
+                cnt++;
             }
         }
         return ans;
