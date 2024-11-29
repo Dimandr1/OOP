@@ -30,11 +30,11 @@ public class Zachetka {
      * @param type     тип аттестации
      * @param semester номер семестра
      */
-    public void AddDifZachet(String name, String type, int semester) {
+    public void addDifZachet(String name, String type, int semester) {
         difZachets.add(new DifZachet(name, type, semester));
     }
 
-    public void AddDifZachet(String name, String type, int semester, boolean mand) {
+    public void addDifZachet(String name, String type, int semester, boolean mand) {
         difZachets.add(new DifZachet(name, type, semester, mand));
     }
 
@@ -45,11 +45,11 @@ public class Zachetka {
      * @param type     тип аттестации
      * @param semester номер семестра
      */
-    public void AddZachet(String name, String type, int semester) {
+    public void addZachet(String name, String type, int semester) {
         zachets.add(new Zachet(name, type, semester));
     }
 
-    public void AddZachet(String name, String type, int semester, boolean mand) {
+    public void addZachet(String name, String type, int semester, boolean mand) {
         zachets.add(new Zachet(name, type, semester, mand));
     }
 
@@ -60,10 +60,10 @@ public class Zachetka {
      * @param sem  номер семестра
      * @param mark оценка за семестр
      */
-    public void SetMark(String name, int sem, int mark) {
+    public void setMark(String name, int sem, int mark) {
         for (DifZachet sub : difZachets) {
             if (Objects.equals(sub.name, name) && sub.semester == sem) {
-                sub.mark = mark;
+                sub.changeMark(mark);
             }
         }
     }
@@ -75,10 +75,10 @@ public class Zachetka {
      * @param sem  номер семестра
      * @param pass зачет или незачет
      */
-    public void SetPass(String name, int sem, boolean pass) {
+    public void setPass(String name, int sem, boolean pass) {
         for (Zachet sub : zachets) {
             if (Objects.equals(sub.name, name) && sub.semester == sem) {
-                sub.passed = pass;
+                sub.changePassing(pass);
             }
         }
     }
@@ -86,7 +86,7 @@ public class Zachetka {
     /**
      * @return средняя оценка зачётки
      */
-    public float GetAverageMark() {
+    public float getAverageMark() {
         float ans = 0;
         int cnt = 0;
         for (DifZachet sub : difZachets) {
@@ -106,7 +106,7 @@ public class Zachetka {
      *                   пятёрки, иначе они не учитываются
      * @return итоговая оценка в диплом по предмету
      */
-    private int GetSubjDipMark(String name, boolean fillMissed) {
+    private int getSubjDipMark(String name, boolean fillMissed) {
         float total = 0;
         int cnt = 0;
         for (DifZachet sub : difZachets) {
@@ -126,7 +126,7 @@ public class Zachetka {
     /**
      * @return средняя оценка диплома на основании уже проставленных в зачётку
      */
-    public float GetAverageDipMark() {
+    public float getAverageDipMark() {
         HashSet<String> mandSubjs = new HashSet<>();
         for (DifZachet sub : difZachets) {
             if (sub.isMandatory && sub.mark > 0 && !mandSubjs.contains(sub.name)) {
@@ -135,7 +135,7 @@ public class Zachetka {
         }
         float totalMarks = 0;
         for (String name : mandSubjs) {
-            totalMarks += GetSubjDipMark(name, false);
+            totalMarks += getSubjDipMark(name, false);
         }
         return totalMarks / mandSubjs.size();
     }
@@ -143,7 +143,7 @@ public class Zachetka {
     /**
      * @return средняя оценка диплома, если все незаполненные поля будут "5"
      */
-    private float GetAverageDipMarkWithFilling() {
+    private float getAverageDipMarkWithFilling() {
         HashSet<String> mandSubjs = new HashSet<>();
         for (DifZachet sub : difZachets) {
             if (sub.isMandatory && !mandSubjs.contains(sub.name)) {
@@ -152,7 +152,7 @@ public class Zachetka {
         }
         float totalMarks = 0;
         for (String name : mandSubjs) {
-            totalMarks += GetSubjDipMark(name, true);
+            totalMarks += getSubjDipMark(name, true);
         }
         return totalMarks / mandSubjs.size();
     }
@@ -163,7 +163,7 @@ public class Zachetka {
      *
      * @return номер текущего семестра
      */
-    private int GetCurSem() {
+    private int getCurSem() {
         int m = 0;
         for (DifZachet sub : difZachets) {
             if (sub.mark > 0 && sub.semester > m) {
@@ -182,11 +182,11 @@ public class Zachetka {
      * @return возвращает истину, если студент уже обучается на бюджете
      * или его можно перевести на бюджет, ложь иначе.
      */
-    public boolean MayStudyFree() {
+    public boolean mayStudyFree() {
         if (studyFree) {
             return true;
         }
-        int curSem = GetCurSem();
+        int curSem = getCurSem();
         if (curSem == 1) {
             return false;
         }
@@ -212,8 +212,8 @@ public class Zachetka {
      * @return возвращает истину, если студент может по итогам
      * текущего семестра получить стипендию.
      */
-    public boolean MayRecieveGrant() {
-        int curSem = GetCurSem();
+    public boolean mayRecieveGrant() {
+        int curSem = getCurSem();
         for (Zachet sub : zachets) {
             if (sub.active && sub.semester == curSem && !sub.passed && sub.isMandatory) {
                 return false;
@@ -230,14 +230,14 @@ public class Zachetka {
     /**
      * @return возвращает истину, если у студента есть возможность получить красный диплом.
      */
-    public boolean MayGetRed() {
+    public boolean mayGetRed() {
         for (DifZachet sub : difZachets) {
             if (sub.isMandatory && ((sub.mark < 4 && sub.mark > 0)
                     || (sub.type.equals("Защита ВКР") && sub.mark != 5 && sub.mark != 0))) {
                 return false;
             }
         }
-        if (GetAverageDipMarkWithFilling() < 4.75) {
+        if (getAverageDipMarkWithFilling() < 4.75) {
             return false;
         }
         return true;
@@ -303,7 +303,7 @@ public class Zachetka {
          *
          * @param newMark новая оценка
          */
-        public void ChangeMark(int newMark) {
+        public void changeMark(int newMark) {
             mark = newMark;
         }
     }
@@ -332,7 +332,7 @@ public class Zachetka {
          *
          * @param newPass что установить (зачёт-незачёт)
          */
-        public void ChangePassing(boolean newPass) {
+        public void changePassing(boolean newPass) {
             passed = newPass;
             active = true;
         }
