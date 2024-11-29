@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.stolyarov.SearcherTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-11-15T08:52:31" hostname="archlinux" time="91.509">
+  <properties/>
+  <testcase name="test()" classname="ru.nsu.stolyarov.SearcherTest" time="91.509"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
