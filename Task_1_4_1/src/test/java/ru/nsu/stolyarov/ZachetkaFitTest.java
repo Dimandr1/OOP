@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 
-class ZachetkaFITTest {
+class ZachetkaFitTest {
     @Test
     void test() {
-        ZachetkaFIT zachetka = new ZachetkaFIT(false);
+        ZachetkaFit zachetka = new ZachetkaFit(false);
 
         zachetka.SetPass("Английский", 1, true);
         zachetka.SetPass("История", 2, true);

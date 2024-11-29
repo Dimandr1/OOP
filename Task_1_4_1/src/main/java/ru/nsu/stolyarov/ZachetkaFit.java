@@ -3,13 +3,13 @@ package ru.nsu.stolyarov;
 /**
  * Частный случай зачётки (ФИТ).
  */
-public class ZachetkaFIT extends Zachetka {
+public class ZachetkaFit extends Zachetka {
     /**
      * Инициализация зачётки с генерацией дисциплин ФИТа.
      *
      * @param studyFree на бюджете ли студент
      */
-    public ZachetkaFIT(boolean studyFree) {
+    public ZachetkaFit(boolean studyFree) {
         super(studyFree);
 
         AddZachet("Английский", "Зачёт", 1);
