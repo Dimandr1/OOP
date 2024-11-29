@@ -1,8 +1,12 @@
 package ru.nsu.stolyarov;
 
+import static java.lang.Math.max;
+
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+
 
 /**
  * Класс, описывающий зачетку студента.
@@ -164,7 +168,15 @@ public class Zachetka {
      * @return номер текущего семестра
      */
     private int getCurSem() {
-        int m = 0;
+        try {
+            return max(difZachets.stream().filter((sub) -> sub.mark > 0)
+                            .map((sub) -> sub.semester).max(Integer::compareTo).get(),
+                    zachets.stream().filter((sub) -> sub.active)
+                            .map((sub) -> sub.semester).max(Integer::compareTo).get());
+        } catch (NoSuchElementException e){
+            return 0;
+        }
+        /*int m = 0;
         for (DifZachet sub : difZachets) {
             if (sub.mark > 0 && sub.semester > m) {
                 m = sub.semester;
@@ -175,7 +187,7 @@ public class Zachetka {
                 m = sub.semester;
             }
         }
-        return m;
+        return m;*/
     }
 
     /**
@@ -190,7 +202,16 @@ public class Zachetka {
         if (curSem == 1) {
             return false;
         }
-        for (Zachet sub : zachets) {
+        if((zachets.stream().filter((sub) -> sub.isMandatory && sub.active
+                && ((sub.semester == curSem || sub.semester == curSem - 1)
+                && !sub.passed)).count() != 0)
+                || (difZachets.stream().filter((sub) -> sub.isMandatory &&
+                ((sub.semester == curSem || sub.semester == curSem - 1)
+                && ((sub.type.equals("Экзамен") && sub.mark < 4)
+                || sub.mark < 3))).count() != 0)){
+            return false;
+        }
+        /*for (Zachet sub : zachets) {
             if (sub.isMandatory && sub.active
                     && ((sub.semester == curSem || sub.semester == curSem - 1)
                     && !sub.passed)) {
@@ -203,7 +224,7 @@ public class Zachetka {
                     || sub.mark < 3))) {
                 return false;
             }
-        }
+        }*/
         studyFree = true;
         return true;
     }
