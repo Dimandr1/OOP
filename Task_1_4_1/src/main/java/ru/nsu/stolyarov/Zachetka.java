@@ -173,7 +173,7 @@ public class Zachetka {
                             .map((sub) -> sub.semester).max(Integer::compareTo).get(),
                     zachets.stream().filter((sub) -> sub.active)
                             .map((sub) -> sub.semester).max(Integer::compareTo).get());
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return 0;
         }
         /*int m = 0;
@@ -202,13 +202,13 @@ public class Zachetka {
         if (curSem == 1) {
             return false;
         }
-        if((zachets.stream().filter((sub) -> sub.isMandatory && sub.active
+        if ((zachets.stream().filter((sub) -> sub.isMandatory && sub.active
                 && ((sub.semester == curSem || sub.semester == curSem - 1)
                 && !sub.passed)).count() != 0)
                 || (difZachets.stream().filter((sub) -> sub.isMandatory &&
                 ((sub.semester == curSem || sub.semester == curSem - 1)
-                && ((sub.type.equals("Экзамен") && sub.mark < 4)
-                || sub.mark < 3))).count() != 0)){
+                        && ((sub.type.equals("Экзамен") && sub.mark < 4)
+                        || sub.mark < 3))).count() != 0)) {
             return false;
         }
         /*for (Zachet sub : zachets) {
