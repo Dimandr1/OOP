@@ -59,6 +59,9 @@ public class Table extends Element {
         return temp.toString();
     }
 
+    /**
+     * Builder.
+     */
     public static class Builder implements ElementBuilder {
         private Table building;
 

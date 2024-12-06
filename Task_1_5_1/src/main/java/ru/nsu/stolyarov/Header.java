@@ -28,6 +28,9 @@ public class Header extends Element {
         return temp.toString();
     }
 
+    /**
+     * Builder.
+     */
     public static class Builder implements ElementBuilder {
         Header building;
 

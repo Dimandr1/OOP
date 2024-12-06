@@ -55,6 +55,9 @@ public class Link extends Text {
         return temp.toString();
     }
 
+    /**
+     * Builder.
+     */
     public static class Builder implements ElementBuilder {
         private Link building;
 

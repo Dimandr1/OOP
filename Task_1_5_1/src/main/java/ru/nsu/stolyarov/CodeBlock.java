@@ -22,6 +22,9 @@ public class CodeBlock extends Element {
         return temp.toString();
     }
 
+    /**
+     * Builder.
+     */
     public static class Builder implements ElementBuilder {
         private CodeBlock building;
 

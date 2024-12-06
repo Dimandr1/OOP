@@ -42,6 +42,9 @@ public class TaskList extends MdList {
         return str.toString();
     }
 
+    /**
+     * Builder.
+     */
     public static class Builder implements ElementBuilder {
         private TaskList building;
 

@@ -45,6 +45,9 @@ public class Image extends Link {
         return temp.toString();
     }
 
+    /**
+     * Builder.
+     */
     public static class Builder implements ElementBuilder {
         private Image building;
 

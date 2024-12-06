@@ -71,7 +71,9 @@ public class Text extends Element implements Listable {
         return temp.toString();
     }
 
-
+    /**
+     * Builder.
+     */
     public static class Builder implements ElementBuilder {
         private Text building;
 
