@@ -29,5 +29,21 @@ class TextTest {
         t = t1.setObject(t2).build().toString();
         assertEquals("123", t1.build().toString());
 
+        t2 = new Text("32");
+        Text t3 = new Text("56");
+        assertEquals(false, t2.equals(t3));
+        t3 = new Text("32");
+        assertEquals(true, t2.equals(t3));
+
+        t1 = new Text.Builder();
+        Text.Builder t4 = new Text.Builder();
+        t1.setText("32").setBold(true).setStrike(true);
+        t4.setText("23").setBold(true);
+        assertEquals(false, t1.build().equals(t4.build()));
+        t4.setStrike(true);
+        assertEquals(false, t1.build().equals(t4.build()));
+        t4.setText("32");
+        assertEquals(true, t1.build().equals(t4.build()));
+
     }
 }
