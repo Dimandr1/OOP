@@ -23,6 +23,7 @@ public class MdList extends Element implements Listable {
 
     /**
      * Вспомогательная функция для сериализации.
+     *
      * @return список в виде строки
      */
     public String toString() {

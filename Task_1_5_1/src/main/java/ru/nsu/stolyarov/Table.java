@@ -24,7 +24,11 @@ public class Table extends Element {
         table = new ArrayList<>();
     }
 
-
+    /**
+     * Сериализация.
+     *
+     * @return таблица в виде строки
+     */
     public String toString() {
         StringBuilder temp = new StringBuilder();
         for (Text el : colNames) {

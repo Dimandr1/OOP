@@ -1,7 +1,7 @@
 package ru.nsu.stolyarov;
 
 /**
- * Обобщающий класс для всех MD-элементов
+ * Обобщающий класс для всех MD-элементов.
  */
 public abstract class Element {
     /**

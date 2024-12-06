@@ -118,7 +118,7 @@ public class TaskList extends MdList {
         }
 
         /**
-         * Удалить элемент по индексу
+         * Удалить элемент по индексу.
          *
          * @param ind индекс удаляемого
          * @return self
@@ -130,7 +130,7 @@ public class TaskList extends MdList {
         }
 
         /**
-         * Удалить последний элемент списка
+         * Удалить последний элемент списка.
          *
          * @return self
          */

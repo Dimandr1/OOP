@@ -13,6 +13,11 @@ public class CodeBlock extends Element {
         code = "";
     }
 
+    /**
+     * Сериализация.
+     *
+     * @return код в виде строки
+     */
     public String toString() {
         StringBuilder temp = new StringBuilder();
         temp.append("```");
