@@ -2,10 +2,8 @@ package ru.nsu.stolyarov;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 import javax.management.InvalidAttributeValueException;
-
+import org.junit.jupiter.api.Test;
 
 class MdListTest {
     @Test
@@ -23,8 +21,8 @@ class MdListTest {
                         .setText("sad").setBold(true).build()).addElement(1, t2.build())
                 .build().toString();
         t = t1.setType(MdList.TYPE_NUMS).build().toString();
-        assertEquals("\t1. <sda>\n\t2. \n\t\t- 123\n" +
-                "\t\t- 147\n\t\t- 678\n\t3. **sad**\n", t);
+        assertEquals("\t1. <sda>\n\t2. \n\t\t- 123\n"
+                + "\t\t- 147\n\t\t- 678\n\t3. **sad**\n", t);
         t = t1.setType(MdList.TYPE_POINTS).removeElement(0).removeElement()
                 .build().toString();
         assertEquals("\t* \n\t\t- 123\n\t\t- 147\n\t\t- 678\n", t);
