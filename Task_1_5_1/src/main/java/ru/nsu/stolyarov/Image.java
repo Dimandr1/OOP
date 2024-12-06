@@ -1,6 +1,13 @@
 package ru.nsu.stolyarov;
 
-public class Image extends Link{
+/**
+ * Класс, описывающий изображеня.
+ */
+public class Image extends Link {
+    public Image() {
+        super();
+    }
+
     @Override
     public String toString() {
         StringBuilder temp = new StringBuilder();
@@ -10,6 +17,12 @@ public class Image extends Link{
         if (italic) {
             temp.append("*");
         }
+        if (strikethrough) {
+            temp.append("~~");
+        }
+        if (code) {
+            temp.append("`");
+        }
         temp.append("!");
         temp.append("[");
         temp.append(text);
@@ -17,6 +30,12 @@ public class Image extends Link{
         temp.append("(");
         temp.append(url);
         temp.append(")");
+        if (code) {
+            temp.append("`");
+        }
+        if (strikethrough) {
+            temp.append("~~");
+        }
         if (italic) {
             temp.append("*");
         }
@@ -25,36 +44,105 @@ public class Image extends Link{
         }
         return temp.toString();
     }
-    public static class Builder implements ElementBuilder{
+
+    public static class Builder implements ElementBuilder {
         private Image building;
-        public Image build(){
+
+        public Image build() {
             return building;
         }
-        public Builder(){
+
+        /**
+         * Инициализация.
+         */
+        public Builder() {
             building = new Image();
         }
-        public Image.Builder setUrl(String url){
+
+        /**
+         * Задать новый адрес изображения.
+         *
+         * @param url новый адрес
+         * @return self
+         */
+        public Image.Builder setUrl(String url) {
             building.url = url;
             return this;
         }
 
-        public Image.Builder setTextObj(Text text){
+        /**
+         * Скопировать поля из Текст-объекта.
+         *
+         * @param text объект для копирования
+         * @return self
+         */
+        public Image.Builder setTextObj(Text text) {
             building.textCpy(text);
             return this;
         }
-        public Image.Builder setText(String text){
+
+        /**
+         * Задать текст для отображения.
+         *
+         * @param text текст
+         * @return self
+         */
+        public Image.Builder setText(String text) {
             building.text = text;
             return this;
         }
-        public Image.Builder setBold(boolean val){
+
+        /**
+         * Сделать текст жирным-нежирным
+         *
+         * @param val новое значение жирности
+         * @return self
+         */
+        public Image.Builder setBold(boolean val) {
             building.bold = val;
             return this;
         }
-        public Image.Builder setItalic(boolean val){
+
+        /**
+         * Сделать текст курсивным-некурсивным
+         *
+         * @param val новое значение курсивности
+         * @return self
+         */
+        public Image.Builder setItalic(boolean val) {
             building.italic = val;
             return this;
         }
-        public Image.Builder setObject(Image obj){
+
+        /**
+         * Сделать текст зачеркнутым/незачеркнутым.
+         *
+         * @param val новое значение
+         * @return self
+         */
+        public Image.Builder setStrike(boolean val) {
+            building.strikethrough = val;
+            return this;
+        }
+
+        /**
+         * Сделать текст кодом/не кодом.
+         *
+         * @param val новое значение
+         * @return self
+         */
+        public Image.Builder setCode(boolean val) {
+            building.code = val;
+            return this;
+        }
+
+        /**
+         * Заместить строящийся объект другой ссылкой.
+         *
+         * @param obj новая ссылка
+         * @return self
+         */
+        public Image.Builder setObject(Image obj) {
             building = obj;
             return this;
         }

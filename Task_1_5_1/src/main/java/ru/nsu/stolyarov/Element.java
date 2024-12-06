@@ -1,4 +1,5 @@
 package ru.nsu.stolyarov;
+
 /**
  * Обобщающий класс для всех MD-элементов
  */
@@ -16,8 +17,8 @@ public abstract class Element {
      * @param obj - другой MD-элемент
      * @return истина, если элементы равны, ложь иначе
      */
-    public boolean equals(Element obj){
-        if(obj.getClass() == this.getClass() && obj.toString().equals(this.toString())){
+    public boolean equals(Element obj) {
+        if (obj.getClass() == this.getClass() && obj.toString().equals(this.toString())) {
             return true;
         }
         return false;
