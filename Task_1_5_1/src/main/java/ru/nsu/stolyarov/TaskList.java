@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Класс, описывающий списки задач
+ * Класс, описывающий списки задач.
  */
 public class TaskList extends MdList {
     private ArrayList<Boolean> done;

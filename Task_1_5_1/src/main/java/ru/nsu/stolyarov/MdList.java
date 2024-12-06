@@ -1,7 +1,7 @@
 package ru.nsu.stolyarov;
 
-import javax.management.InvalidAttributeValueException;
 import java.util.ArrayList;
+import javax.management.InvalidAttributeValueException;
 
 /**
  * Класс, описывающий списки.
@@ -21,6 +21,10 @@ public class MdList extends Element implements Listable {
         elements = new ArrayList<>();
     }
 
+    /**
+     * Вспомогательная функция для сериализации.
+     * @return список в виде строки
+     */
     public String toString() {
         StringBuilder temp = new StringBuilder();
         toString(temp, 1);
@@ -64,6 +68,9 @@ public class MdList extends Element implements Listable {
         return str.toString();
     }
 
+    /**
+     * Builder.
+     */
     public static class Builder implements ElementBuilder {
         private MdList building;
 
@@ -172,7 +179,7 @@ public class MdList extends Element implements Listable {
         }
 
         /**
-         * Удалить элемент по индексу
+         * Удалить элемент по индексу.
          *
          * @param ind индекс удаляемого
          * @return self
@@ -183,7 +190,7 @@ public class MdList extends Element implements Listable {
         }
 
         /**
-         * Удалить последний элемент списка
+         * Удалить последний элемент списка.
          *
          * @return self
          */
