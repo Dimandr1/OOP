@@ -43,7 +43,7 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li><a href="#nested-class-summary">Nested</a>&nbsp;|&nbsp;</li>
-<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
@@ -71,21 +71,18 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
 <div class="inheritance"><a href="Element.html" title="class in ru.nsu.stolyarov">ru.nsu.stolyarov.Element</a>
-<div class="inheritance"><a href="Text.html" title="class in ru.nsu.stolyarov">ru.nsu.stolyarov.Text</a>
-<div class="inheritance"><a href="Link.html" title="class in ru.nsu.stolyarov">ru.nsu.stolyarov.Link</a>
 <div class="inheritance">ru.nsu.stolyarov.Image</div>
-</div>
-</div>
 </div>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="Listable.html" title="interface in ru.nsu.stolyarov">Listable</a></code></dd>
+<dd><code><a href="Listable.html" title="interface in ru.nsu.stolyarov">Listable</a></code>, <code><a href="Tableable.html" title="interface in ru.nsu.stolyarov">Tableable</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Image</span>
-<span class="extends-implements">extends <a href="Link.html" title="class in ru.nsu.stolyarov">Link</a></span></div>
+<span class="extends-implements">extends <a href="Element.html" title="class in ru.nsu.stolyarov">Element</a>
+implements <a href="Listable.html" title="interface in ru.nsu.stolyarov">Listable</a>, <a href="Tableable.html" title="interface in ru.nsu.stolyarov">Tableable</a></span></div>
 <div class="block">Класс, описывающий изображеня.</div>
 </section>
 <section class="summary">
@@ -105,18 +102,6 @@ loadScripts(document, 'script');</script>
 <div class="block">Builder.</div>
 </div>
 </div>
-</section>
-</li>
-<!-- =========== FIELD SUMMARY =========== -->
-<li>
-<section class="field-summary" id="field-summary">
-<h2>Field Summary</h2>
-<div class="inherited-list">
-<h3 id="fields-inherited-from-class-ru.nsu.stolyarov.Link">Fields inherited from class&nbsp;ru.nsu.stolyarov.<a href="Link.html" title="class in ru.nsu.stolyarov">Link</a></h3>
-<code><a href="Link.html#url">url</a></code></div>
-<div class="inherited-list">
-<h3 id="fields-inherited-from-class-ru.nsu.stolyarov.Text">Fields inherited from class&nbsp;ru.nsu.stolyarov.<a href="Text.html" title="class in ru.nsu.stolyarov">Text</a></h3>
-<code><a href="Text.html#bold">bold</a>, <a href="Text.html#code">code</a>, <a href="Text.html#italic">italic</a>, <a href="Text.html#strikethrough">strikethrough</a>, <a href="Text.html#text">text</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -151,9 +136,6 @@ loadScripts(document, 'script');</script>
 </div>
 </div>
 </div>
-<div class="inherited-list">
-<h3 id="methods-inherited-from-class-ru.nsu.stolyarov.Text">Methods inherited from class&nbsp;ru.nsu.stolyarov.<a href="Text.html" title="class in ru.nsu.stolyarov">Text</a></h3>
-<code><a href="Text.html#textCpy(ru.nsu.stolyarov.Text)">textCpy</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-ru.nsu.stolyarov.Element">Methods inherited from class&nbsp;ru.nsu.stolyarov.<a href="Element.html" title="class in ru.nsu.stolyarov">Element</a></h3>
 <code><a href="Element.html#equals(ru.nsu.stolyarov.Element)">equals</a></code></div>
@@ -192,8 +174,8 @@ loadScripts(document, 'script');</script>
 <div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="Element.html#toString()">Element</a></code></span></div>
 <div class="block">Преобразование MD-элемента в текст формата markdown.</div>
 <dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="Link.html#toString()">toString</a></code>&nbsp;in class&nbsp;<code><a href="Link.html" title="class in ru.nsu.stolyarov">Link</a></code></dd>
+<dt>Specified by:</dt>
+<dd><code><a href="Element.html#toString()">toString</a></code>&nbsp;in class&nbsp;<code><a href="Element.html" title="class in ru.nsu.stolyarov">Element</a></code></dd>
 <dt>Returns:</dt>
 <dd>- элемент в виде текста</dd>
 </dl>
