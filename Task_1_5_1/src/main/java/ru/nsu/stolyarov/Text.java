@@ -3,7 +3,7 @@ package ru.nsu.stolyarov;
 /**
  * Класс, описывающий текст.
  */
-public class Text extends Element implements Listable {
+public class Text extends Element implements Listable, Tableable {
     protected String text;
     protected boolean bold;
     protected boolean italic;

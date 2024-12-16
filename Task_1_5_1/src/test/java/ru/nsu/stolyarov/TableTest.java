@@ -23,5 +23,21 @@ class TableTest {
         assertEquals("|123|456|<sad>|ds|\n|:-|-:|-|:-:|\n", t);
         t = t1.changeName("2").build().toString();
         assertEquals("|2|456|<sad>|ds|\n|:-|-:|-|:-:|\n", t);
+        t = t1.changeName(new Link.Builder().setUrl("dsa").build()).build().toString();
+        assertEquals("|<dsa>|456|<sad>|ds|\n|:-|-:|-|:-:|\n", t);
+        t = t1.addCol("next", Table.ALLIGN_EMPTY, "1").build().toString();
+        assertEquals("|<dsa>|456|<sad>|ds|next|\n|:-|-:|-|:-:|-|\n|||||1|\n", t);
+        t = t1.addCol(new Text("last"), Table.ALLIGN_RIGHT,
+                new Link.Builder().setUrl("dsad").build()).build().toString();
+        assertEquals("|<dsa>|456|<sad>|ds|next|last|\n"
+                + "|:-|-:|-|:-:|-|-:|\n|||||1|<dsad>|\n", t);
+        t = t1.addRow("asd", "ds", "fp").build().toString();
+        assertEquals("|<dsa>|456|<sad>|ds|next|last|\n"
+                + "|:-|-:|-|:-:|-|-:|\n|||||1|<dsad>|\n|asd|ds|fp||||\n", t);
+        t = t1.addRow(new Text("asd"), new Link.Builder().setUrl("sd").build())
+                .build().toString();
+        assertEquals("|<dsa>|456|<sad>|ds|next|last|\n"
+                + "|:-|-:|-|:-:|-|-:|\n|||||1|<dsad>|\n|asd|ds|fp||||\n|asd|<sd>|||||\n", t);
+
     }
 }

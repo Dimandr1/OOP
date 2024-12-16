@@ -108,10 +108,7 @@ public class MdList extends Element implements Listable {
          * @return self
          */
         public MdList.Builder addElement(Listable... els) {
-            for (Listable el : els) {
-                building.elements.add(el);
-            }
-            return this;
+            return addElement(building.elements.size(), els);
         }
 
         /**
@@ -135,10 +132,7 @@ public class MdList extends Element implements Listable {
          * @return self
          */
         public MdList.Builder addElement(String... els) {
-            for (String el : els) {
-                building.elements.add(new Text(el));
-            }
-            return this;
+            return addElement(building.elements.size(), els);
         }
 
         /**
@@ -196,8 +190,7 @@ public class MdList extends Element implements Listable {
          * @return self
          */
         public MdList.Builder removeElement() {
-            building.elements.remove(building.elements.size() - 1);
-            return this;
+            return removeElement(building.elements.size() - 1);
         }
     }
 }

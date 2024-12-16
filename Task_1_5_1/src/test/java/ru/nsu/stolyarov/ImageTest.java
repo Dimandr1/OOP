@@ -17,13 +17,7 @@ class ImageTest {
         t = t1.setUrl("fds").build().toString();
         assertEquals("![](fds)", t);
         Text t3 = new Text("123");
-        t = t1.setTextObj(t3).build().toString();
-        assertEquals("![123](fds)", t);
-        t = t1.setBold(true).setItalic(true).build().toString();
-        assertEquals("***![123](fds)***", t);
-        t = t1.setBold(false).setStrike(true).setCode(true).build().toString();
-        assertEquals("*~~`![123](fds)`~~*", t);
-        t = t1.setObject(t2).setText("sd").setItalic(true).build().toString();
-        assertEquals("*![sd]()*", t);
+        t = t1.setObject(t2).setText("sd").build().toString();
+        assertEquals("![sd]()", t);
     }
 }

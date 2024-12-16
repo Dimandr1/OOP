@@ -4,7 +4,7 @@ package ru.nsu.stolyarov;
  * Класс, описывающий ссылки.
  */
 public class Link extends Text {
-    protected String url;
+    private String url;
 
     /**
      * Инициализация пустой ссылки без эффектов.

@@ -1,6 +1,5 @@
 package ru.nsu.stolyarov;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -11,9 +10,9 @@ public class Table extends Element {
     public static final Integer ALLIGN_LEFT = 1;
     public static final Integer ALLIGN_MID = 2;
     public static final Integer ALLIGN_RIGHT = 3;
-    private ArrayList<Text> colNames;
+    private ArrayList<Tableable> colNames;
     private ArrayList<Integer> allignments;
-    private ArrayList<ArrayList<Text>> table;
+    private ArrayList<ArrayList<Tableable>> table;
 
     /**
      * Инициализация пустой таблицы.
@@ -31,7 +30,7 @@ public class Table extends Element {
      */
     public String toString() {
         StringBuilder temp = new StringBuilder();
-        for (Text el : colNames) {
+        for (Tableable el : colNames) {
             temp.append("|");
             temp.append(el.toString());
         }
@@ -53,8 +52,8 @@ public class Table extends Element {
         if (colNames.size() > 0) {
             temp.append("|\n");
         }
-        for (ArrayList<Text> row : table) {
-            for (Text el : row) {
+        for (ArrayList<Tableable> row : table) {
+            for (Tableable el : row) {
                 temp.append("|");
                 temp.append(el.toString());
             }
@@ -101,19 +100,11 @@ public class Table extends Element {
          * @param vals       строковые значения элементов колонки
          * @return self
          */
-        public Table.Builder addCol(int ind, String name, int allignment, String... vals) {
-            while (vals.length > building.table.size()) {
-                addRow();
-            }
-            building.colNames.add(ind, new Text(name));
-            building.allignments.add(ind, 0);
-            for (int i = 0; i < building.table.size(); i++) {
-                if (i < vals.length) {
-                    building.table.get(i).add(ind, new Text(vals[i]));
-                } else {
-                    building.table.get(i).add(ind, new Text());
-                }
-            }
+        public Table.Builder addCol(int ind, String name, Integer allignment, String... vals) {
+            addCol(ind);
+            changeCol(ind, vals);
+            building.colNames.set(ind, new Text(name));
+            building.allignments.set(ind, allignment);
             return this;
         }
 
@@ -127,19 +118,11 @@ public class Table extends Element {
          * @param vals       объекты элементов колонки
          * @return self
          */
-        public Table.Builder addCol(int ind, Text name, int allignment, Text... vals) {
-            while (vals.length > building.table.size()) {
-                addRow();
-            }
-            building.colNames.add(ind, name);
-            building.allignments.add(ind, 0);
-            for (int i = 0; i < building.table.size(); i++) {
-                if (i < vals.length) {
-                    building.table.get(i).add(ind, vals[i]);
-                } else {
-                    building.table.get(i).add(ind, new Text());
-                }
-            }
+        public Table.Builder addCol(int ind, Text name, Integer allignment, Tableable... vals) {
+            addCol(ind);
+            changeCol(ind, vals);
+            building.colNames.set(ind, name);
+            building.allignments.set(ind, allignment);
             return this;
         }
 
@@ -149,10 +132,20 @@ public class Table extends Element {
          * @return self
          */
         public Table.Builder addCol() {
-            building.colNames.add(new Text());
-            building.allignments.add(0);
+            return addCol(building.colNames.size());
+        }
+
+        /**
+         * Добавить новую пустую колонку на указанный индекс таблицы.
+         *
+         * @param ind место вставки пустового столбца
+         * @return self
+         */
+        public Table.Builder addCol(int ind) {
+            building.colNames.add(ind, new Text());
+            building.allignments.add(ind, 0);
             for (int i = 0; i < building.table.size(); i++) {
-                building.table.get(i).add(new Text());
+                building.table.get(i).add(ind, new Text());
             }
             return this;
         }
@@ -166,20 +159,8 @@ public class Table extends Element {
          * @param vals       значения элементов колонки
          * @return self
          */
-        public Table.Builder addCol(String name, int allignment, String... vals) {
-            while (vals.length > building.table.size()) {
-                addRow();
-            }
-            building.colNames.add(new Text(name));
-            building.allignments.add(0);
-            for (int i = 0; i < building.table.size(); i++) {
-                if (i < vals.length) {
-                    building.table.get(i).add(new Text(vals[i]));
-                } else {
-                    building.table.get(i).add(new Text());
-                }
-            }
-            return this;
+        public Table.Builder addCol(String name, Integer allignment, String... vals) {
+            return addCol(building.colNames.size(), name, allignment, vals);
         }
 
         /**
@@ -191,20 +172,8 @@ public class Table extends Element {
          * @param vals       объекты элементов колонки
          * @return self
          */
-        public Table.Builder addCol(Text name, int allignment, Text... vals) {
-            while (vals.length > building.table.size()) {
-                addRow();
-            }
-            building.colNames.add(name);
-            building.allignments.add(0);
-            for (int i = 0; i < building.table.size(); i++) {
-                if (i < vals.length) {
-                    building.table.get(i).add(vals[i]);
-                } else {
-                    building.table.get(i).add(new Text());
-                }
-            }
-            return this;
+        public Table.Builder addCol(Text name, Integer allignment, Tableable... vals) {
+            return addCol(building.colNames.size(), name, allignment, vals);
         }
 
         /**
@@ -215,18 +184,8 @@ public class Table extends Element {
          * @return self
          */
         public Table.Builder addRow(int ind, String... vals) {
-            while (vals.length > building.colNames.size()) {
-                addCol();
-            }
-            ArrayList<Text> newList = new ArrayList<>();
-            for (int i = 0; i < building.colNames.size(); i++) {
-                if (i < vals.length) {
-                    newList.add(new Text(vals[i]));
-                } else {
-                    newList.add(new Text());
-                }
-            }
-            building.table.add(ind, newList);
+            addRow(ind);
+            changeRow(ind, vals);
             return this;
         }
 
@@ -237,19 +196,9 @@ public class Table extends Element {
          * @param vals объекты элементов
          * @return self
          */
-        public Table.Builder addRow(int ind, Text... vals) {
-            while (vals.length > building.colNames.size()) {
-                addCol();
-            }
-            ArrayList<Text> newList = new ArrayList<>();
-            for (int i = 0; i < building.colNames.size(); i++) {
-                if (i < vals.length) {
-                    newList.add(vals[i]);
-                } else {
-                    newList.add(new Text());
-                }
-            }
-            building.table.add(ind, newList);
+        public Table.Builder addRow(int ind, Tableable... vals) {
+            addRow(ind);
+            changeRow(ind, vals);
             return this;
         }
 
@@ -260,19 +209,7 @@ public class Table extends Element {
          * @return self
          */
         public Table.Builder addRow(String... vals) {
-            while (vals.length > building.colNames.size()) {
-                addCol();
-            }
-            ArrayList<Text> newList = new ArrayList<>();
-            for (int i = 0; i < building.colNames.size(); i++) {
-                if (i < vals.length) {
-                    newList.add(new Text(vals[i]));
-                } else {
-                    newList.add(new Text());
-                }
-            }
-            building.table.add(newList);
-            return this;
+            return addRow(building.table.size(), vals);
         }
 
         /**
@@ -281,20 +218,8 @@ public class Table extends Element {
          * @param vals объекты элементов
          * @return self
          */
-        public Table.Builder addRow(Text... vals) {
-            while (vals.length > building.colNames.size()) {
-                addCol();
-            }
-            ArrayList<Text> newList = new ArrayList<>();
-            for (int i = 0; i < building.colNames.size(); i++) {
-                if (i < vals.length) {
-                    newList.add(vals[i]);
-                } else {
-                    newList.add(new Text());
-                }
-            }
-            building.table.add(newList);
-            return this;
+        public Table.Builder addRow(Tableable... vals) {
+            return addRow(building.table.size(), vals);
         }
 
         /**
@@ -303,11 +228,21 @@ public class Table extends Element {
          * @return self
          */
         public Table.Builder addRow() {
-            ArrayList<Text> newList = new ArrayList<>();
+            return addRow(building.table.size());
+        }
+
+        /**
+         * Добавить новую пустую строку по указанному индексу таблицы.
+         *
+         * @param ind место вставки пустой стркои
+         * @return self
+         */
+        public Table.Builder addRow(int ind) {
+            ArrayList<Tableable> newList = new ArrayList<>();
             for (int i = 0; i < building.colNames.size(); i++) {
                 newList.add(new Text());
             }
-            building.table.add(newList);
+            building.table.add(ind, newList);
             return this;
         }
 
@@ -354,13 +289,7 @@ public class Table extends Element {
          * @return self
          */
         public Table.Builder changeName(String... vals) {
-            while (vals.length > building.colNames.size()) {
-                addCol();
-            }
-            for (int i = 0; i < vals.length; i++) {
-                building.colNames.set(i, new Text(vals[i]));
-            }
-            return this;
+            return changeName(0, vals);
         }
 
         /**
@@ -370,13 +299,7 @@ public class Table extends Element {
          * @return self
          */
         public Table.Builder changeName(Text... vals) {
-            while (vals.length > building.colNames.size()) {
-                addCol();
-            }
-            for (int i = 0; i < vals.length; i++) {
-                building.colNames.set(i, vals[i]);
-            }
-            return this;
+            return changeName(0, vals);
         }
 
         /**
@@ -430,6 +353,9 @@ public class Table extends Element {
          * @return self
          */
         public Table.Builder changeRow(int ind, String... vals) {
+            while (ind >= building.table.size()) {
+                addRow();
+            }
             while (vals.length > building.colNames.size()) {
                 addCol();
             }
@@ -446,7 +372,10 @@ public class Table extends Element {
          * @param vals новые объектные значения
          * @return self
          */
-        public Table.Builder changeRow(int ind, Text... vals) {
+        public Table.Builder changeRow(int ind, Tableable... vals) {
+            while (ind >= building.table.size()) {
+                addRow();
+            }
             while (vals.length > building.colNames.size()) {
                 addCol();
             }
@@ -467,6 +396,9 @@ public class Table extends Element {
             while (vals.length > building.table.size()) {
                 addRow();
             }
+            while (ind >= building.colNames.size()) {
+                addCol();
+            }
             for (int i = 0; i < vals.length; i++) {
                 building.table.get(i).set(ind, new Text(vals[i]));
             }
@@ -480,9 +412,12 @@ public class Table extends Element {
          * @param vals новые объектные значения
          * @return self
          */
-        public Table.Builder changeCol(int ind, Text... vals) {
+        public Table.Builder changeCol(int ind, Tableable... vals) {
             while (vals.length > building.table.size()) {
                 addRow();
+            }
+            while (ind >= building.colNames.size()) {
+                addCol();
             }
             for (int i = 0; i < vals.length; i++) {
                 building.table.get(i).set(ind, vals[i]);

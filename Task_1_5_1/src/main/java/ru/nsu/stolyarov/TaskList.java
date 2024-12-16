@@ -1,7 +1,6 @@
 package ru.nsu.stolyarov;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Класс, описывающий списки задач.
@@ -66,11 +65,7 @@ public class TaskList extends MdList {
          * @return self
          */
         public TaskList.Builder addElement(Listable... els) {
-            for (Listable el : els) {
-                building.elements.add(el);
-                building.done.add(false);
-            }
-            return this;
+            return addElement(building.elements.size(), els);
         }
 
         /**
@@ -95,11 +90,7 @@ public class TaskList extends MdList {
          * @return self
          */
         public TaskList.Builder addElement(String... els) {
-            for (String el : els) {
-                building.elements.add(new Text(el));
-                building.done.add(false);
-            }
-            return this;
+            return addElement(building.elements.size(), els);
         }
 
         /**
@@ -135,9 +126,7 @@ public class TaskList extends MdList {
          * @return self
          */
         public TaskList.Builder removeElement() {
-            building.elements.remove(building.elements.size() - 1);
-            building.done.remove(building.done.size() - 1);
-            return this;
+            return removeElement(building.elements.size() - 1);
         }
 
         /**
@@ -149,8 +138,8 @@ public class TaskList extends MdList {
          * @return self
          */
         public TaskList.Builder setTask(int ind, String text, boolean val) {
-            building.done.set(ind, val);
-            building.elements.set(ind, new Text(text));
+            setTask(ind, text);
+            setTask(ind, val);
             return this;
         }
 
@@ -163,8 +152,8 @@ public class TaskList extends MdList {
          * @return self
          */
         public TaskList.Builder setTask(int ind, Listable el, boolean val) {
-            building.done.set(ind, val);
-            building.elements.set(ind, el);
+            setTask(ind, el);
+            setTask(ind, val);
             return this;
         }
 

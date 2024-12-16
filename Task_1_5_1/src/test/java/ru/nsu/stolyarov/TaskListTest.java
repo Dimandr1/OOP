@@ -33,9 +33,9 @@ class TaskListTest {
                 .setTask(4, true).build().toString();
         assertEquals("\t- [x] 23\n\t- [ ] sad\n\t- [x] <>\n"
                 + "\t- [ ] ![]()\n\t- [x] 1\n", t);
-        t = t2.addElement(1, "232").build().toString();
+        t = t2.addElement(1, "232").removeElement().build().toString();
         assertEquals("\t- [x] 23\n\t- [ ] 232\n\t- [ ] sad\n\t- [x] <>\n"
-                + "\t- [ ] ![]()\n\t- [x] 1\n", t);
+                + "\t- [ ] ![]()\n", t);
 
     }
 }
