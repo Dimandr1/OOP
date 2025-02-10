@@ -76,6 +76,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Solver</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Использование потоков.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,7 +110,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.util.ArrayList)" class="member-name-link">Solver</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;ar)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Создать решатель, передавая обрабатываемый массив.</div>
+</div>
 </div>
 </section>
 </li>
@@ -126,10 +129,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isSimple(int)" class="member-name-link">isSimple</a><wbr>(int&nbsp;digit)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Проверка числа на простоту.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#solve(int)" class="member-name-link">solve</a><wbr>(int&nbsp;threadsAmount)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Обработать заданный при создании решателя массив, находя в нем простые.</div>
+</div>
 </div>
 </div>
 </div>
@@ -177,6 +184,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(java.util.ArrayList)">
 <h3>Solver</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Solver</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;ar)</span></div>
+<div class="block">Создать решатель, передавая обрабатываемый массив.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>ar</code> - - тот самый массив</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -191,6 +203,13 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isSimple(int)">
 <h3>isSimple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isSimple</span><wbr><span class="parameters">(int&nbsp;digit)</span></div>
+<div class="block">Проверка числа на простоту.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>digit</code> - - проверяемое число</dd>
+<dt>Returns:</dt>
+<dd>- простое ли (true/false)</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -198,7 +217,12 @@ loadScripts(document, 'script');</script>
 <h3>solve</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">solve</span><wbr><span class="parameters">(int&nbsp;threadsAmount)</span>
               throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
+<div class="block">Обработать заданный при создании решателя массив, находя в нем простые.</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>threadsAmount</code> - - количество потоков обработки</dd>
+<dt>Returns:</dt>
+<dd>есть ли в массиве не простые числа</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
