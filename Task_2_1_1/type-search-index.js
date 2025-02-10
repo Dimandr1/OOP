@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.stolyarov","l":"Main"},{"p":"ru.nsu.stolyarov","l":"Solver"}];updateSearchResults();
