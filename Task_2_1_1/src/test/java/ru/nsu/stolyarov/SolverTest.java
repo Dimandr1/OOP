@@ -1,13 +1,15 @@
 package ru.nsu.stolyarov;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
 
 class SolverTest {
     @Test
@@ -51,73 +53,13 @@ class SolverTest {
         long endTime = System.currentTimeMillis();
         System.out.println("Время работы без создания потоков: " + (endTime - startTime)
                 + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(2);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 2 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(3);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 3 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(4);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 4 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(5);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 5 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(6);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 6 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(7);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 7 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(8);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 8 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(9);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 9 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(10);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 10 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(11);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 11 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
-        startTime = System.currentTimeMillis();
-        timeTestSolver.solve(12);
-        endTime = System.currentTimeMillis();
-        System.out.println("Время работы на 12 потоках (8 ядер): " + (endTime - startTime)
-                + " милисекунд");
-
+        for(int i = 2; i < 12; i++){
+            startTime = System.currentTimeMillis();
+            timeTestSolver.solve(i);
+            endTime = System.currentTimeMillis();
+            System.out.println("Время работы на " + i + " потоках (8 ядер): "
+                    + (endTime - startTime) + " милисекунд");
+        }
 
         startTime = System.currentTimeMillis();
         timeTestSolver.solve(0);

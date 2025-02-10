@@ -2,12 +2,20 @@ package ru.nsu.stolyarov;
 
 import java.util.ArrayList;
 
+/**
+ * Использование потоков.
+ */
 public class Solver {
 
     protected ArrayList<Integer> digits;
     protected boolean b;
     protected int cur;
 
+    /**
+     * Проверка числа на простоту.
+     * @param digit - проверяемое число
+     * @return - простое ли (true/false)
+     */
     public boolean isSimple(int digit) {
         for (int i = 2; i * i <= digit; i++) {
             if (digit % i == 0) {
@@ -17,17 +25,35 @@ public class Solver {
         return true;
     }
 
+    /**
+     * Увеличить cur (индекс числа в массиве, которое мы сейчас обрабатываем) на 1
+     * @return старое значение cur
+     */
+    private synchronized int increment() {
+        cur++;
+        return cur - 1;
+    }
+
+    /**
+     * Создать решатель, передавая обрабатываемый массив.
+     * @param ar - тот самый массив
+     */
     public Solver(ArrayList<Integer> ar) {
         digits = ar;
     }
 
+    /**
+     * Обработать заданный при создании решателя массив, находя в нем простые.
+     * @param threadsAmount - количество потоков обработки
+     * @return есть ли в массиве не простые числа
+     * @throws InterruptedException
+     */
     public boolean solve(int threadsAmount) throws InterruptedException {
         b = false;
         cur = 0;
 
         if (threadsAmount == 1) {
-            SolverThread mainThread = new SolverThread();
-            mainThread.run();
+            runThread();
         } else if (threadsAmount == 0) {
             if (digits.parallelStream().map(n -> isSimple(n))
                     .filter(n -> !n).toList().isEmpty()) {
@@ -37,10 +63,9 @@ public class Solver {
             }
 
         } else if (threadsAmount > 1) {
-            ArrayList<SolverThread> threads = new ArrayList<>();
+            ArrayList<Thread> threads = new ArrayList<>();
             for (int i = 0; i < threadsAmount; i++) {
-                SolverThread anotherThread = new SolverThread();
-                anotherThread.id = i;
+                Thread anotherThread = new Thread(this::runThread);
                 threads.add(anotherThread);
             }
             for (int i = 0; i < threadsAmount; i++) {
@@ -54,21 +79,14 @@ public class Solver {
         return b;
     }
 
-    private class SolverThread extends Thread {
-        int id;
-
-        private synchronized int increment() {
-            cur++;
-            return cur - 1;
-        }
-
-        @Override
-        public void run() {
-            while (!b && cur < digits.size()) {
-                int t = increment();
-                if (t < digits.size() && !isSimple(digits.get(t))) {
-                    b = true;
-                }
+    /**
+     * Функция для создания потока, проверяющего числа массива на простоту.
+     */
+    private void runThread() {
+        while (!b && cur < digits.size()) {
+            int t = increment();
+            if (t < digits.size() && !isSimple(digits.get(t))) {
+                b = true;
             }
         }
     }
