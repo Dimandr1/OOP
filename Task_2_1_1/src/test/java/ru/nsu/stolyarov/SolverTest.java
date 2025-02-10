@@ -53,7 +53,7 @@ class SolverTest {
         long endTime = System.currentTimeMillis();
         System.out.println("Время работы без создания потоков: " + (endTime - startTime)
                 + " милисекунд");
-        for(int i = 2; i < 12; i++){
+        for (int i = 2; i < 12; i++) {
             startTime = System.currentTimeMillis();
             timeTestSolver.solve(i);
             endTime = System.currentTimeMillis();

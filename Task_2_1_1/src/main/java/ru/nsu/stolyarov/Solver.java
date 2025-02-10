@@ -8,11 +8,12 @@ import java.util.ArrayList;
 public class Solver {
 
     protected ArrayList<Integer> digits;
-    protected boolean b;
+    protected boolean flag;
     protected int cur;
 
     /**
      * Проверка числа на простоту.
+     *
      * @param digit - проверяемое число
      * @return - простое ли (true/false)
      */
@@ -27,6 +28,7 @@ public class Solver {
 
     /**
      * Увеличить cur (индекс числа в массиве, которое мы сейчас обрабатываем) на 1
+     *
      * @return старое значение cur
      */
     private synchronized int increment() {
@@ -36,6 +38,7 @@ public class Solver {
 
     /**
      * Создать решатель, передавая обрабатываемый массив.
+     *
      * @param ar - тот самый массив
      */
     public Solver(ArrayList<Integer> ar) {
@@ -44,12 +47,13 @@ public class Solver {
 
     /**
      * Обработать заданный при создании решателя массив, находя в нем простые.
+     *
      * @param threadsAmount - количество потоков обработки
      * @return есть ли в массиве не простые числа
      * @throws InterruptedException
      */
     public boolean solve(int threadsAmount) throws InterruptedException {
-        b = false;
+        flag = false;
         cur = 0;
 
         if (threadsAmount == 1) {
@@ -76,17 +80,17 @@ public class Solver {
             }
         }
 
-        return b;
+        return flag;
     }
 
     /**
      * Функция для создания потока, проверяющего числа массива на простоту.
      */
     private void runThread() {
-        while (!b && cur < digits.size()) {
+        while (!flag && cur < digits.size()) {
             int t = increment();
             if (t < digits.size() && !isSimple(digits.get(t))) {
-                b = true;
+                flag = true;
             }
         }
     }
