@@ -9,7 +9,6 @@ public class Solver {
 
     private ArrayList<Integer> digits;
     private boolean flag;
-    private int cur;
 
     /**
      * Проверка числа на простоту.
@@ -31,10 +30,6 @@ public class Solver {
      *
      * @return старое значение cur
      */
-    private synchronized int increment() {
-        cur++;
-        return cur - 1;
-    }
 
     /**
      * Создать решатель, передавая обрабатываемый массив.
@@ -54,25 +49,34 @@ public class Solver {
      */
     public boolean solve(int threadsAmount) throws InterruptedException {
         flag = false;
-        cur = 0;
 
         if (threadsAmount == 1) {
-            runThread();
+            runThread(0, digits.size());
         } else if (threadsAmount == 0) {
-            if (digits.parallelStream().map(n -> isPrime(n))
-                    .filter(n -> !n).toList().isEmpty()) {
-                return false;
-            } else {
+            if (digits.parallelStream().anyMatch(n -> !isPrime(n))) {
                 return true;
+            } else {
+                return false;
             }
 
         } else if (threadsAmount > 1) {
+            if (threadsAmount > digits.size()) {
+                threadsAmount = digits.size();
+            }
             ArrayList<Thread> threads = new ArrayList<>();
-            for (int i = 0; i < threadsAmount; i++) {
-                Thread anotherThread = new Thread(this::runThread);
+            int part = (digits.size() - 1) / threadsAmount + 1;
+            for (int i = 0; i < threadsAmount - 1; i++) {
+                final int left = part * i;
+                final int right = part * (i + 1);
+                Thread anotherThread = new Thread(() -> runThread(left, right));
                 threads.add(anotherThread);
                 anotherThread.start();
             }
+            final int left = part * (threadsAmount - 1);
+            final int right = digits.size();
+            Thread anotherThread = new Thread(() -> runThread(left, right));
+            threads.add(anotherThread);
+            anotherThread.start();
             for (int i = 0; i < threadsAmount; i++) {
                 threads.get(i).join();
             }
@@ -83,13 +87,16 @@ public class Solver {
 
     /**
      * Функция для создания потока, проверяющего числа массива на простоту.
+     * @param from индекс элемента, с которого начнем проверять (включительно)
+     * @param to индекс элемента, на котором закончим проверять (не включительно)
      */
-    private void runThread() {
-        while (!flag && cur < digits.size()) {
-            int t = increment();
-            if (t < digits.size() && !isPrime(digits.get(t))) {
+    private void runThread(final int from, final int to) {
+        int i = from;
+        while (!flag && i < to) {
+            if (!isPrime(digits.get(i))) {
                 flag = true;
             }
+            i++;
         }
     }
 }
