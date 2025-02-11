@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class Solver {
 
-    protected ArrayList<Integer> digits;
-    protected boolean flag;
-    protected int cur;
+    private ArrayList<Integer> digits;
+    private boolean flag;
+    private int cur;
 
     /**
      * Проверка числа на простоту.
@@ -17,7 +17,7 @@ public class Solver {
      * @param digit - проверяемое число
      * @return - простое ли (true/false)
      */
-    public boolean isSimple(int digit) {
+    private boolean isPrime(int digit) {
         for (int i = 2; i * i <= digit; i++) {
             if (digit % i == 0) {
                 return false;
@@ -59,7 +59,7 @@ public class Solver {
         if (threadsAmount == 1) {
             runThread();
         } else if (threadsAmount == 0) {
-            if (digits.parallelStream().map(n -> isSimple(n))
+            if (digits.parallelStream().map(n -> isPrime(n))
                     .filter(n -> !n).toList().isEmpty()) {
                 return false;
             } else {
@@ -71,9 +71,7 @@ public class Solver {
             for (int i = 0; i < threadsAmount; i++) {
                 Thread anotherThread = new Thread(this::runThread);
                 threads.add(anotherThread);
-            }
-            for (int i = 0; i < threadsAmount; i++) {
-                threads.get(i).start();
+                anotherThread.start();
             }
             for (int i = 0; i < threadsAmount; i++) {
                 threads.get(i).join();
@@ -89,7 +87,7 @@ public class Solver {
     private void runThread() {
         while (!flag && cur < digits.size()) {
             int t = increment();
-            if (t < digits.size() && !isSimple(digits.get(t))) {
+            if (t < digits.size() && !isPrime(digits.get(t))) {
                 flag = true;
             }
         }
