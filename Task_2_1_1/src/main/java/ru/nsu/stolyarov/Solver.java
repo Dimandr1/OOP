@@ -26,12 +26,6 @@ public class Solver {
     }
 
     /**
-     * Увеличить cur (индекс числа в массиве, которое мы сейчас обрабатываем) на 1
-     *
-     * @return старое значение cur
-     */
-
-    /**
      * Создать решатель, передавая обрабатываемый массив.
      *
      * @param ar - тот самый массив
@@ -45,7 +39,6 @@ public class Solver {
      *
      * @param threadsAmount - количество потоков обработки
      * @return есть ли в массиве не простые числа
-     * @throws InterruptedException
      */
     public boolean solve(int threadsAmount) throws InterruptedException {
         flag = false;
