@@ -1,5 +1,8 @@
 package ru.nsu.stolyarov.interfaces;
 
+/**
+ * Очередь, в которую можно добавлять элементы.
+ */
 public interface QueueTimedGettable {
     /**
      * Попробовать изъять элемент из очереди за не более чем limit времени.

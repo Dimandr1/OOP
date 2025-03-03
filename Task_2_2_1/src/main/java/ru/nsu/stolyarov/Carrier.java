@@ -2,7 +2,6 @@ package ru.nsu.stolyarov;
 
 import java.util.ArrayList;
 
-import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
 import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
 /**
@@ -30,7 +29,7 @@ public class Carrier {
     public void workworkwork(QueueTimedGettable storageManager, long limit) {
         long startedWork = System.currentTimeMillis();
         while (limit > System.currentTimeMillis() - startedWork) {
-            takeNDeliver(storageManager,
+            takeAndDeliver(storageManager,
                     limit - (System.currentTimeMillis() - startedWork));
         }
     }
@@ -43,8 +42,8 @@ public class Carrier {
      * @param limit          оставшееся время работы
      * @return список доставленных заказов
      */
-    public synchronized ArrayList<Integer> takeNDeliver(QueueTimedGettable storageManager,
-                                                        long limit) {
+    public synchronized ArrayList<Integer> takeAndDeliver(QueueTimedGettable storageManager,
+                                                          long limit) {
         long startTime = System.currentTimeMillis();
         ArrayList<Integer> pizzas = new ArrayList<>();
         while (pizzas.size() < bagCapacity

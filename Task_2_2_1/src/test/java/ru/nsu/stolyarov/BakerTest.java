@@ -27,11 +27,11 @@ class BakerTest {
             }
         };
 
-        testBaker.cookNPut(blankGetter, blankAdder, 1);
+        testBaker.cookAndPut(blankGetter, blankAdder, 1);
         assertEquals(1, test);
-        testBaker.cookNPut(blankGetter, blankAdder, 2);
+        testBaker.cookAndPut(blankGetter, blankAdder, 2);
         assertEquals(2, test);
-        testBaker.cookNPut(blankGetter, blankAdder, -1);
+        testBaker.cookAndPut(blankGetter, blankAdder, -1);
         assertEquals(2, test);
     }
 

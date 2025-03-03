@@ -1,11 +1,12 @@
 package ru.nsu.stolyarov;
 
-import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
-import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
-
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+
+import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
+import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
+
 
 /**
  * Обертка над MyQueue, обеспечивающая Thread-safety.

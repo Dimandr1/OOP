@@ -17,10 +17,10 @@ class CarrierTest {
                 return ((int) limit);
             }
         };
-        assertEquals(new ArrayList<Integer>(), testCarrier.takeNDeliver(blankGetter, 0));
+        assertEquals(new ArrayList<Integer>(), testCarrier.takeAndDeliver(blankGetter, 0));
         ArrayList<Integer> testAr = new ArrayList<>();
         testAr.add(999);
         testAr.add(999);
-        assertEquals(testAr, testCarrier.takeNDeliver(blankGetter, 999));
+        assertEquals(testAr, testCarrier.takeAndDeliver(blankGetter, 999));
     }
 }
