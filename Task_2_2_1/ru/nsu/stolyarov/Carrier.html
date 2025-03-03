@@ -108,7 +108,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#takeNDeliver(ru.nsu.stolyarov.interfaces.QueueTimedGettable,long)" class="member-name-link">takeNDeliver</a><wbr>(<a href="interfaces/QueueTimedGettable.html" title="interface in ru.nsu.stolyarov.interfaces">QueueTimedGettable</a>&nbsp;storageManager,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#takeAndDeliver(ru.nsu.stolyarov.interfaces.QueueTimedGettable,long)" class="member-name-link">takeAndDeliver</a><wbr>(<a href="interfaces/QueueTimedGettable.html" title="interface in ru.nsu.stolyarov.interfaces">QueueTimedGettable</a>&nbsp;storageManager,
  long&nbsp;limit)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Курьер набирает со склада пиццу, пока не заполнит рюкзак или не кончится рабочий день.</div>
@@ -169,9 +169,9 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="takeNDeliver(ru.nsu.stolyarov.interfaces.QueueTimedGettable,long)">
-<h3>takeNDeliver</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">takeNDeliver</span><wbr><span class="parameters">(<a href="interfaces/QueueTimedGettable.html" title="interface in ru.nsu.stolyarov.interfaces">QueueTimedGettable</a>&nbsp;storageManager,
+<section class="detail" id="takeAndDeliver(ru.nsu.stolyarov.interfaces.QueueTimedGettable,long)">
+<h3>takeAndDeliver</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html" title="class or interface in java.util" class="external-link">ArrayList</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">takeAndDeliver</span><wbr><span class="parameters">(<a href="interfaces/QueueTimedGettable.html" title="interface in ru.nsu.stolyarov.interfaces">QueueTimedGettable</a>&nbsp;storageManager,
  long&nbsp;limit)</span></div>
 <div class="block">Курьер набирает со склада пиццу, пока не заполнит рюкзак или не кончится рабочий день.
  После этого доставляет.</div>

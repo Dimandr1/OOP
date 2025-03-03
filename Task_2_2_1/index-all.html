@@ -98,7 +98,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/stolyarov/Configuration.html#%3Cinit%3E()" class="member-name-link">Configuration()</a> - Constructor for class ru.nsu.stolyarov.<a href="ru/nsu/stolyarov/Configuration.html" title="class in ru.nsu.stolyarov">Configuration</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="ru/nsu/stolyarov/Baker.html#cookNPut(ru.nsu.stolyarov.interfaces.QueueTimedGettable,ru.nsu.stolyarov.interfaces.QueueTimedAddable,long)" class="member-name-link">cookNPut(QueueTimedGettable, QueueTimedAddable, long)</a> - Method in class ru.nsu.stolyarov.<a href="ru/nsu/stolyarov/Baker.html" title="class in ru.nsu.stolyarov">Baker</a></dt>
+<dt><a href="ru/nsu/stolyarov/Baker.html#cookAndPut(ru.nsu.stolyarov.interfaces.QueueTimedGettable,ru.nsu.stolyarov.interfaces.QueueTimedAddable,long)" class="member-name-link">cookAndPut(QueueTimedGettable, QueueTimedAddable, long)</a> - Method in class ru.nsu.stolyarov.<a href="ru/nsu/stolyarov/Baker.html" title="class in ru.nsu.stolyarov">Baker</a></dt>
 <dd>
 <div class="block">Повар пытается взять заказ.</div>
 </dd>
@@ -120,7 +120,9 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
 <dt><a href="ru/nsu/stolyarov/MyQueue.html#len()" class="member-name-link">len()</a> - Method in class ru.nsu.stolyarov.<a href="ru/nsu/stolyarov/MyQueue.html" title="class in ru.nsu.stolyarov">MyQueue</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Возвращает количество элементов в очереди.</div>
+</dd>
 <dt><a href="ru/nsu/stolyarov/SafeQueueManager.html#len()" class="member-name-link">len()</a> - Method in class ru.nsu.stolyarov.<a href="ru/nsu/stolyarov/SafeQueueManager.html" title="class in ru.nsu.stolyarov">SafeQueueManager</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -146,7 +148,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="ru/nsu/stolyarov/MyQueue.html#%3Cinit%3E(int)" class="member-name-link">MyQueue(int)</a> - Constructor for class ru.nsu.stolyarov.<a href="ru/nsu/stolyarov/MyQueue.html" title="class in ru.nsu.stolyarov">MyQueue</a></dt>
 <dd>
-<div class="block">Инициализация очереди</div>
+<div class="block">Инициализация очереди.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:O">O</h2>
@@ -178,9 +180,13 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:Q">Q</h2>
 <dl class="index">
 <dt><a href="ru/nsu/stolyarov/interfaces/QueueTimedAddable.html" class="type-name-link" title="interface in ru.nsu.stolyarov.interfaces">QueueTimedAddable</a> - Interface in <a href="ru/nsu/stolyarov/interfaces/package-summary.html">ru.nsu.stolyarov.interfaces</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Очередь, из которой можно брать элементы.</div>
+</dd>
 <dt><a href="ru/nsu/stolyarov/interfaces/QueueTimedGettable.html" class="type-name-link" title="interface in ru.nsu.stolyarov.interfaces">QueueTimedGettable</a> - Interface in <a href="ru/nsu/stolyarov/interfaces/package-summary.html">ru.nsu.stolyarov.interfaces</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Очередь, в которую можно добавлять элементы.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
@@ -212,7 +218,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
-<dt><a href="ru/nsu/stolyarov/Carrier.html#takeNDeliver(ru.nsu.stolyarov.interfaces.QueueTimedGettable,long)" class="member-name-link">takeNDeliver(QueueTimedGettable, long)</a> - Method in class ru.nsu.stolyarov.<a href="ru/nsu/stolyarov/Carrier.html" title="class in ru.nsu.stolyarov">Carrier</a></dt>
+<dt><a href="ru/nsu/stolyarov/Carrier.html#takeAndDeliver(ru.nsu.stolyarov.interfaces.QueueTimedGettable,long)" class="member-name-link">takeAndDeliver(QueueTimedGettable, long)</a> - Method in class ru.nsu.stolyarov.<a href="ru/nsu/stolyarov/Carrier.html" title="class in ru.nsu.stolyarov">Carrier</a></dt>
 <dd>
 <div class="block">Курьер набирает со склада пиццу, пока не заполнит рюкзак или не кончится рабочий день.</div>
 </dd>
