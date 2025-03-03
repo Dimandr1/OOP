@@ -3,7 +3,6 @@ package ru.nsu.stolyarov;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
-
 import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
 import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
@@ -28,6 +27,8 @@ public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
     }
 
     /**
+     * Возвращает длину очереди.
+     *
      * @return количество элементов в очереди
      */
     public int len() {
@@ -70,6 +71,11 @@ public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
         }
     }
 
+    /**
+     * Добавить элемент в очередь. Если заполнена, то блокируется до освобождения.
+     *
+     * @param element элемент для добавления
+     */
     public void add(int element) {
         lock.lock();
         try {

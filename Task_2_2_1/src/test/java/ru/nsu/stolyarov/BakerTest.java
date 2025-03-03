@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
 import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BakerTest {
     int test;

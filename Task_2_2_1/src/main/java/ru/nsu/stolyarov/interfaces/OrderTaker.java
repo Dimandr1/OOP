@@ -1,7 +1,7 @@
 package ru.nsu.stolyarov.interfaces;
 
 /**
- * Интерфейс объектов, которые могут принимать заказы
+ * Интерфейс объектов, которые могут принимать заказы.
  */
 public interface OrderTaker {
     /**

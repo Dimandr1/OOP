@@ -2,8 +2,6 @@ package ru.nsu.stolyarov;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class PizzaNSUTest {
     @Test
     void test() throws InterruptedException {
@@ -14,7 +12,7 @@ class PizzaNSUTest {
         myConf.workingTime = 10000;
         myConf.sleepTime = 3000;
 
-        PizzaNSU pizzaHub = new PizzaNSU(myConf);
+        PizzaNsU pizzaHub = new PizzaNsU(myConf);
         Thread hubThread = new Thread(() -> {
             try {
                 pizzaHub.start(2);

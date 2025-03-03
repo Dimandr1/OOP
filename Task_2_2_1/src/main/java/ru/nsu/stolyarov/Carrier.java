@@ -1,7 +1,6 @@
 package ru.nsu.stolyarov;
 
 import java.util.ArrayList;
-
 import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
 /**

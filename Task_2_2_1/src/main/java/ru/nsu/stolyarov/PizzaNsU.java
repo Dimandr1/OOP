@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Класс, представляющий пиццерию в целом. Запускает "ежедневно" рабочий процесс.
  */
-public class PizzaNSU {
+public class PizzaNsU {
     private SafeQueueManager storage;
     private OrderManager orders;
     private ArrayList<Baker> bakers;
@@ -19,7 +19,7 @@ public class PizzaNSU {
      *
      * @param configuration класс конфигурации пиццерии
      */
-    public PizzaNSU(Configuration configuration) {
+    public PizzaNsU(Configuration configuration) {
         storage = new SafeQueueManager(configuration.storageCapacity);
         orders = new OrderManager(callsCapacity);
         bakers = new ArrayList<>();

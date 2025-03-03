@@ -5,7 +5,7 @@ import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarrierTest {
     @Test
