@@ -123,7 +123,9 @@ implements <a href="interfaces/QueueTimedGettable.html" title="interface in ru.n
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Взять элемент из очереди.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#len()" class="member-name-link">len</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -240,6 +242,11 @@ implements <a href="interfaces/QueueTimedGettable.html" title="interface in ru.n
 <section class="detail" id="get()">
 <h3>get</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">get</span>()</div>
+<div class="block">Взять элемент из очереди. При отсутствии элемента блокируется, пока он не появится.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>номер заказа при успехе, -1 при неудаче</dd>
+</dl>
 </section>
 </li>
 </ul>
