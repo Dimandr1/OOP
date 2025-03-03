@@ -47,12 +47,12 @@ class SafeQueueManagerTest {
         assertEquals(3, testQueue.len());
         first = new Thread(() -> testQueue.tryAdd(2, 0));
         first.start();
-        Thread second = new Thread(() -> testQueue.tryGet(0));
         Thread third = new Thread(() -> testQueue.tryGet(100));
         third.start();
         third.join();
         first.join();
         assertEquals(3, testQueue.len());
+        Thread second = new Thread(() -> testQueue.tryGet(0));
         second.start();
         second.join();
         assertEquals(2, testQueue.len());
