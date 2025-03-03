@@ -1,12 +1,26 @@
 package ru.nsu.stolyarov;
 
+import ru.nsu.stolyarov.interfaces.OrderTaker;
+
+/**
+ * Класс, делающий заказы в пиццерию.
+ */
 public class Client {
-    private OrderManager ordersManager;
-    public Client(OrderManager ordersManager){
+    private OrderTaker ordersManager;
+
+    /**
+     * Инициализировать покупателя.
+     *
+     * @param ordersManager связанная с покупателем пиццерия
+     */
+    public Client(OrderTaker ordersManager) {
         this.ordersManager = ordersManager;
     }
 
-    public void makeOrder() throws InterruptedException {
+    /**
+     * Сделать заказ.
+     */
+    public void makeOrder() {
         ordersManager.takeOrder();
     }
 }

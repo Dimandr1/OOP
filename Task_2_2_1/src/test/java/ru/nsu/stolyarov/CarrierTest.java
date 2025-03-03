@@ -1,0 +1,26 @@
+package ru.nsu.stolyarov;
+
+import org.junit.jupiter.api.Test;
+import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
+
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class CarrierTest {
+    @Test
+    void test(){
+        Carrier testCarrier = new Carrier(2);
+        QueueTimedGettable blankGetter = new QueueTimedGettable() {
+            @Override
+            public int tryGet(long limit) {
+                return ((int) limit);
+            }
+        };
+        assertEquals(new ArrayList<Integer>(), testCarrier.takeNDeliver(blankGetter, 0));
+        ArrayList<Integer> testAr = new ArrayList<>();
+        testAr.add(999);
+        testAr.add(999);
+        assertEquals(testAr, testCarrier.takeNDeliver(blankGetter, 999));
+    }
+}

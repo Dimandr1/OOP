@@ -1,32 +1,64 @@
 package ru.nsu.stolyarov;
 
+import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
+import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
+
 import java.util.ArrayList;
 
+/**
+ * Класс курьера доставки пиццулечки.
+ */
 public class Carrier {
     private int bagCapacity;
-    private SafeQueueManager storageManager;
-    private OrderManager ordersManager;
-    private long limit;
-    public Carrier(int bagCapacity, OrderManager ordersManager, SafeQueueManager storageManager){
+    private final long deliveryTime = 50;
+
+    /**
+     * Инициализация курьера с постоянным размером рюкзака.
+     *
+     * @param bagCapacity вместимость рюкзака в пиццах
+     */
+    public Carrier(int bagCapacity) {
         this.bagCapacity = bagCapacity;
-        this.ordersManager = ordersManager;
-        this.storageManager = storageManager;
     }
-    public void workworkwork() throws InterruptedException {
-        while(limit > System.currentTimeMillis() || storageManager.getFullness() > 0){
-            ArrayList<Integer> pizzas = new ArrayList<>();
-            int order;
-            while(pizzas.size() < bagCapacity && ((limit > System.currentTimeMillis() &&
-                    (order = storageManager.tryGet(limit)) != -1) ||
-                    ((limit <= System.currentTimeMillis()) &&
-                            (order = storageManager.tryGet()) != -1))){
+
+    /**
+     * Курьер выходит на рабочий день.
+     *
+     * @param storageManager склад, откуда надо брать пиццулечку
+     * @param limit          время работы
+     */
+    public void workworkwork(QueueTimedGettable storageManager, long limit) {
+        long startedWork = System.currentTimeMillis();
+        while (limit > System.currentTimeMillis() - startedWork) {
+            takeNDeliver(storageManager, limit - (System.currentTimeMillis() - startedWork));
+        }
+    }
+
+    /**
+     * Курьер набирает со склада пиццу, пока не заполнит рюкзак или не кончится рабочий день.
+     * После этого доставляет.
+     *
+     * @param storageManager склад, откуда надо брать пиццулечку
+     * @param limit          оставшееся время работы
+     * @return список доставленных заказов
+     */
+    public synchronized ArrayList<Integer> takeNDeliver(QueueTimedGettable storageManager, long limit) {
+        long startTime = System.currentTimeMillis();
+        ArrayList<Integer> pizzas = new ArrayList<>();
+        while (pizzas.size() < bagCapacity && limit > System.currentTimeMillis() - startTime) {
+            int order = storageManager.tryGet(limit - (System.currentTimeMillis() - startTime));
+            if (order != -1) {
                 pizzas.add(order);
-                System.out.println("Заказ " + order + " взят курьером");
-            }
-            for(int i = 0; i < pizzas.size(); i++){
-                this.wait(50);
-                System.out.println("Заказ " + pizzas.get(i) + " доставлен");
             }
         }
+        for (Integer order : pizzas) {
+            try {
+                wait(deliveryTime);
+            } catch (InterruptedException e) {
+                System.out.println("everything is fine");
+            }
+            System.out.println("Заказ " + order + " доставлен");
+        }
+        return pizzas;
     }
 }

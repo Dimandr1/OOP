@@ -1,96 +1,137 @@
 package ru.nsu.stolyarov;
 
+import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
+import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
+
 import java.time.Clock;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class SafeQueueManager {
+/**
+ * Обертка над MyQueue, обеспечивающая Thread-safety.
+ */
+public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
     private MyQueue queue;
     ReentrantLock lock;
     Condition cond;
-    public SafeQueueManager(int size){
+
+    /**
+     * Инициализация очереди.
+     *
+     * @param size максимальный размер очереди
+     */
+    public SafeQueueManager(int size) {
         queue = new MyQueue(size);
         lock = new ReentrantLock();
         cond = lock.newCondition();
     }
-    public int getFullness(){
+
+    /**
+     * @return количество элементов в очереди
+     */
+    public int len() {
         return queue.len();
     }
-    public boolean tryAdd(int element, long limit) throws InterruptedException {
 
-        long curTime = System.currentTimeMillis();
-        if(!lock.tryLock(limit - curTime, TimeUnit.MILLISECONDS)){
-            return false;
-        }
-        try {
-            while (queue.len() == queue.size - 1){
-                curTime = System.currentTimeMillis();
-                if(curTime > limit){
+    @Override
+    public boolean tryAdd(int element, long limit) {
+        if (limit == 0) {
+            add(element);
+            return true;
+        } else {
+            long startTime = System.currentTimeMillis();
+            try {
+                if (!lock.tryLock(limit - (System.currentTimeMillis() - startTime), TimeUnit.MILLISECONDS)) {
                     return false;
                 }
-                cond.await(limit - curTime, TimeUnit.MILLISECONDS);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-            queue.add(element);
+            try {
+                while (queue.len() == queue.size - 1) {
+                    if (System.currentTimeMillis() - startTime > limit) {
+                        return false;
+                    }
+                    try {
+                        cond.await(limit - (System.currentTimeMillis() - startTime), TimeUnit.MILLISECONDS);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                queue.add(element);
+                cond.signalAll();
+            } finally {
+                lock.unlock();
+            }
+            return true;
         }
-        finally {
-            lock.unlock();
-            cond.signalAll();
-        }
-        return true;
     }
 
-    public void add(int element) throws InterruptedException {
+    public void add(int element) {
         lock.lock();
         try {
-            while (queue.len() == queue.size - 1){
+            while (queue.len() == queue.size - 1) {
                 cond.await();
             }
             queue.add(element);
-        }
-        finally {
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            cond.signalAll();
             lock.unlock();
-            cond.signalAll();
-            cond.signalAll();
         }
     }
 
 
-    public int tryGet(long limit) throws InterruptedException {
-        long curTime = System.currentTimeMillis();
+    @Override
+    public int tryGet(long limit) {
+        if (limit == 0) {
+            return get();
+        }
+        long startTime = System.currentTimeMillis();
         int ret;
-        if(!lock.tryLock(limit - curTime, TimeUnit.MILLISECONDS)){
-            return -1;
+        try {
+            if (!lock.tryLock(limit - (System.currentTimeMillis() - startTime), TimeUnit.MILLISECONDS)) {
+                return -1;
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         try {
-            while (queue.len() == 0){
-                curTime = System.currentTimeMillis();
-                if(curTime > limit){
+            while (queue.len() == 0) {
+                if (System.currentTimeMillis() - startTime > limit) {
                     return -1;
                 }
-                cond.await(limit - curTime, TimeUnit.MILLISECONDS);
+                try {
+                    cond.await(limit - (System.currentTimeMillis() - startTime), TimeUnit.MILLISECONDS);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
             ret = queue.extract();
-        }
-        finally {
-            lock.unlock();
             cond.signalAll();
+        } finally {
+            lock.unlock();
         }
         return ret;
     }
 
-    public int tryGet() throws InterruptedException {
+    public int get() {
         int ret;
         lock.lock();
         try {
-            if(queue.len() == 0){
-                return -1;
+            while (queue.len() == 0) {
+                try {
+                    cond.await();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
             ret = queue.extract();
-        }
-        finally {
-            lock.unlock();
             cond.signalAll();
+        } finally {
+            lock.unlock();
         }
         return ret;
     }
