@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarrierTest {
     @Test
-    void test(){
+    void test() {
         Carrier testCarrier = new Carrier(2);
         QueueTimedGettable blankGetter = new QueueTimedGettable() {
             @Override

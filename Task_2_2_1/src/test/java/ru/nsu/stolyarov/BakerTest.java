@@ -4,12 +4,11 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
 import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BakerTest {
     int test;
+
     @Test
     void test() throws InterruptedException {
         Baker testBaker = new Baker(5);
@@ -35,7 +34,6 @@ class BakerTest {
         testBaker.cookNPut(blankGetter, blankAdder, -1);
         assertEquals(2, test);
     }
-
 
 
 }

@@ -37,7 +37,8 @@ public class PizzaNSU {
     /**
      * Запуск пиццерии, которая будет работать заданное число дней.
      *
-     * @param workingDays сколько дней работать. При отрицательных значениях работает бесконечно
+     * @param workingDays сколько дней работать.
+     *                    При отрицательных значениях работает бесконечно
      * @throws InterruptedException
      */
     public synchronized void start(int workingDays) throws InterruptedException {

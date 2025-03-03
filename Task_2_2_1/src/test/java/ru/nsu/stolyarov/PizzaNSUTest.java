@@ -25,8 +25,8 @@ class PizzaNSUTest {
         hubThread.start();
 
         Client client = new Client(pizzaHub.getOrders());
-        synchronized (this){
-            for(int i = 0; i < 300; i++){
+        synchronized (this) {
+            for (int i = 0; i < 300; i++) {
                 client.makeOrder();
                 wait(50);
             }

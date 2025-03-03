@@ -6,7 +6,8 @@ package ru.nsu.stolyarov;
 public class Main {
     /**
      * lol main.
-     * @param args
+     *
+     * @param args kek
      */
     public static void main(String[] args) {
        /* Configuration myConf = new Configuration();

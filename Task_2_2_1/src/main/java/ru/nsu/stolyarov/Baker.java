@@ -25,10 +25,12 @@ public class Baker {
      * @param storageManager куда складывать пиццулечку
      * @param limit          время работы
      */
-    public void workworkwork(QueueTimedGettable orderManager, QueueTimedAddable storageManager, long limit) {
+    public void workworkwork(QueueTimedGettable orderManager,
+                             QueueTimedAddable storageManager, long limit) {
         long startedWork = System.currentTimeMillis();
         while (limit > System.currentTimeMillis() - startedWork) {
-            cookNPut(orderManager, storageManager, limit - (System.currentTimeMillis() - startedWork));
+            cookNPut(orderManager, storageManager,
+                    limit - (System.currentTimeMillis() - startedWork));
         }
     }
 
@@ -40,7 +42,8 @@ public class Baker {
      * @param limit          оставшееся время до конца работы
      * @return номер приготовленного заказа или -1 в случае неудачи
      */
-    public synchronized int cookNPut(QueueTimedGettable orderManager, QueueTimedAddable storageManager, long limit) {
+    public synchronized int cookNPut(QueueTimedGettable orderManager,
+                                     QueueTimedAddable storageManager, long limit) {
         int order = orderManager.tryGet(limit);
         if (order != -1) {
             System.out.println("Заказ " + order + " готовится");

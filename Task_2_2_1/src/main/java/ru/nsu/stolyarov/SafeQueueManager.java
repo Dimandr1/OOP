@@ -3,7 +3,6 @@ package ru.nsu.stolyarov;
 import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
 import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
-import java.time.Clock;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -42,7 +41,8 @@ public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
         } else {
             long startTime = System.currentTimeMillis();
             try {
-                if (!lock.tryLock(limit - (System.currentTimeMillis() - startTime), TimeUnit.MILLISECONDS)) {
+                if (!lock.tryLock(limit - (System.currentTimeMillis() - startTime),
+                        TimeUnit.MILLISECONDS)) {
                     return false;
                 }
             } catch (InterruptedException e) {
@@ -54,7 +54,8 @@ public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
                         return false;
                     }
                     try {
-                        cond.await(limit - (System.currentTimeMillis() - startTime), TimeUnit.MILLISECONDS);
+                        cond.await(limit - (System.currentTimeMillis() - startTime),
+                                TimeUnit.MILLISECONDS);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -92,7 +93,8 @@ public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
         long startTime = System.currentTimeMillis();
         int ret;
         try {
-            if (!lock.tryLock(limit - (System.currentTimeMillis() - startTime), TimeUnit.MILLISECONDS)) {
+            if (!lock.tryLock(limit - (System.currentTimeMillis() - startTime),
+                    TimeUnit.MILLISECONDS)) {
                 return -1;
             }
         } catch (InterruptedException e) {
@@ -104,7 +106,8 @@ public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
                     return -1;
                 }
                 try {
-                    cond.await(limit - (System.currentTimeMillis() - startTime), TimeUnit.MILLISECONDS);
+                    cond.await(limit - (System.currentTimeMillis() - startTime),
+                            TimeUnit.MILLISECONDS);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
