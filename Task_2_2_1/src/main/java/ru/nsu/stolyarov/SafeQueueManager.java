@@ -3,6 +3,7 @@ package ru.nsu.stolyarov;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+
 import ru.nsu.stolyarov.interfaces.QueueTimedAddable;
 import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
@@ -127,6 +128,11 @@ public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
         return ret;
     }
 
+    /**
+     * Взять элемент из очереди. При отсутствии элемента блокируется, пока он не появится.
+     *
+     * @return номер заказа при успехе, -1 при неудаче
+     */
     public int get() {
         int ret;
         lock.lock();
