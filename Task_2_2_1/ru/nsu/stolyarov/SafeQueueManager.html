@@ -118,13 +118,17 @@ implements <a href="interfaces/QueueTimedGettable.html" title="interface in ru.n
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#add(int)" class="member-name-link">add</a><wbr>(int&nbsp;element)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Добавить элемент в очередь.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#len()" class="member-name-link">len</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Возвращает длину очереди.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#tryAdd(int,long)" class="member-name-link">tryAdd</a><wbr>(int&nbsp;element,
  long&nbsp;limit)</code></div>
@@ -176,6 +180,7 @@ implements <a href="interfaces/QueueTimedGettable.html" title="interface in ru.n
 <section class="detail" id="len()">
 <h3>len</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">len</span>()</div>
+<div class="block">Возвращает длину очереди.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>количество элементов в очереди</dd>
@@ -206,6 +211,11 @@ implements <a href="interfaces/QueueTimedGettable.html" title="interface in ru.n
 <section class="detail" id="add(int)">
 <h3>add</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">add</span><wbr><span class="parameters">(int&nbsp;element)</span></div>
+<div class="block">Добавить элемент в очередь. Если заполнена, то блокируется до освобождения.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>element</code> - элемент для добавления</dd>
+</dl>
 </section>
 </li>
 <li>
