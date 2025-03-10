@@ -23,7 +23,7 @@ public class Baker {
      *
      * @param orderManager   откуда брать заказы
      * @param storageManager куда складывать пиццулечку
-     * @param limit          время работы
+     * @param limit          время работы в миллисекундах
      */
     public void workworkwork(QueueTimedGettable orderManager,
                              QueueTimedAddable storageManager, long limit) {
@@ -39,7 +39,7 @@ public class Baker {
      *
      * @param orderManager   откуда брать заказ
      * @param storageManager куда складывать
-     * @param limit          оставшееся время до конца работы
+     * @param limit          оставшееся время до конца работы в миллисекундах
      * @return номер приготовленного заказа или -1 в случае неудачи
      */
     public synchronized int cookAndPut(QueueTimedGettable orderManager,

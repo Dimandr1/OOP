@@ -1,6 +1,7 @@
 package ru.nsu.stolyarov;
 
 import java.util.ArrayList;
+
 import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
 
 /**
@@ -23,7 +24,7 @@ public class Carrier {
      * Курьер выходит на рабочий день.
      *
      * @param storageManager склад, откуда надо брать пиццулечку
-     * @param limit          время работы
+     * @param limit          время работы в миллисекундах
      */
     public void workworkwork(QueueTimedGettable storageManager, long limit) {
         long startedWork = System.currentTimeMillis();
@@ -38,7 +39,7 @@ public class Carrier {
      * После этого доставляет.
      *
      * @param storageManager склад, откуда надо брать пиццулечку
-     * @param limit          оставшееся время работы
+     * @param limit          оставшееся время работы в миллисекундах
      * @return список доставленных заказов
      */
     public synchronized ArrayList<Integer> takeAndDeliver(QueueTimedGettable storageManager,

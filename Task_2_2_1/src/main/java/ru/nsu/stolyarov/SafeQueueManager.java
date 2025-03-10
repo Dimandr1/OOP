@@ -13,8 +13,8 @@ import ru.nsu.stolyarov.interfaces.QueueTimedGettable;
  */
 public class SafeQueueManager implements QueueTimedGettable, QueueTimedAddable {
     private MyQueue queue;
-    ReentrantLock lock;
-    Condition cond;
+    private ReentrantLock lock;
+    private Condition cond;
 
     /**
      * Инициализация очереди.

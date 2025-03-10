@@ -1,5 +1,9 @@
 package ru.nsu.stolyarov;
 
+import com.google.gson.Gson;
+
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -15,16 +19,40 @@ public class PizzaNsU {
     private static int callsCapacity = 99999;
 
     /**
-     * Инициализация пиццерии с заданной конфигурацией.
+     * Создание пиццерии по объекту конфигурации..
+     *
+     * @param configuration объект конфигурации
+     */
+    public PizzaNsU(Configuration configuration) {
+        SetStartConf(configuration);
+    }
+
+    /**
+     * Создание пиццерии по JSON-файлу с конфигурацией.
+     *
+     * @param pathToConf путь до файла конфигурации
+     */
+    public PizzaNsU(String pathToConf) {
+        Configuration configuration;
+        try (FileReader reader = new FileReader(pathToConf)) {
+            configuration = (new Gson()).fromJson(reader, Configuration.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        SetStartConf(configuration);
+    }
+
+    /**
+     * Инициализация полей пиццерии по заданной конфигурации.
      *
      * @param configuration класс конфигурации пиццерии
      */
-    public PizzaNsU(Configuration configuration) {
+    private void SetStartConf(Configuration configuration) {
         storage = new SafeQueueManager(configuration.storageCapacity);
         orders = new OrderManager(callsCapacity);
         bakers = new ArrayList<>();
         carriers = new ArrayList<>();
-        for (int i : configuration.bakers) {
+        for (long i : configuration.bakers) {
             bakers.add(new Baker(i));
         }
         for (int i : configuration.carriers) {
