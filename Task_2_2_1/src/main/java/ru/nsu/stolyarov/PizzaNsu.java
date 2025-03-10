@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Класс, представляющий пиццерию в целом. Запускает "ежедневно" рабочий процесс.
  */
-public class PizzaNsU {
+public class PizzaNsu {
     private SafeQueueManager storage;
     private OrderManager orders;
     private ArrayList<Baker> bakers;
@@ -23,7 +23,7 @@ public class PizzaNsU {
      *
      * @param configuration объект конфигурации
      */
-    public PizzaNsU(Configuration configuration) {
+    public PizzaNsu(Configuration configuration) {
         SetStartConf(configuration);
     }
 
@@ -32,7 +32,7 @@ public class PizzaNsU {
      *
      * @param pathToConf путь до файла конфигурации
      */
-    public PizzaNsU(String pathToConf) {
+    public PizzaNsu(String pathToConf) {
         Configuration configuration;
         try (FileReader reader = new FileReader(pathToConf)) {
             configuration = (new Gson()).fromJson(reader, Configuration.class);
