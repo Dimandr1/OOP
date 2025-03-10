@@ -89,9 +89,13 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.stolyarov.Configuration)" class="member-name-link">PizzaNsU</a><wbr>(<a href="Configuration.html" title="class in ru.nsu.stolyarov">Configuration</a>&nbsp;configuration)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">PizzaNsU</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pathToConf)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Инициализация пиццерии с заданной конфигурацией.</div>
+<div class="block">Создание пиццерии по JSON-файлу с конфигурацией.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(ru.nsu.stolyarov.Configuration)" class="member-name-link">PizzaNsU</a><wbr>(<a href="Configuration.html" title="class in ru.nsu.stolyarov">Configuration</a>&nbsp;configuration)</code></div>
+<div class="col-last odd-row-color">
+<div class="block">Создание пиццерии по объекту конфигурации..</div>
 </div>
 </div>
 </section>
@@ -136,10 +140,21 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.stolyarov.Configuration)">
 <h3>PizzaNsU</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PizzaNsU</span><wbr><span class="parameters">(<a href="Configuration.html" title="class in ru.nsu.stolyarov">Configuration</a>&nbsp;configuration)</span></div>
-<div class="block">Инициализация пиццерии с заданной конфигурацией.</div>
+<div class="block">Создание пиццерии по объекту конфигурации..</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>configuration</code> - класс конфигурации пиццерии</dd>
+<dd><code>configuration</code> - объект конфигурации</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(java.lang.String)">
+<h3>PizzaNsU</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PizzaNsU</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;pathToConf)</span></div>
+<div class="block">Создание пиццерии по JSON-файлу с конфигурацией.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pathToConf</code> - путь до файла конфигурации</dd>
 </dl>
 </section>
 </li>
