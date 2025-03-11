@@ -19,7 +19,7 @@ public class PizzaNsu {
     private static int callsCapacity = 99999;
 
     /**
-     * Создание пиццерии по объекту конфигурации..
+     * Создание пиццерии по объекту конфигурации.
      *
      * @param configuration объект конфигурации
      */

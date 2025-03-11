@@ -11,10 +11,8 @@ import java.io.IOException;
 public class Main {
     /**
      * lol main.
-     *
-     * @param args kek
      */
-    public static void main(String[] args) {
+    public static void main() {
         Configuration myConf = new Configuration();
         myConf.bakers = new long[]{300, 500, 700, 400, 250};
         myConf.carriers = new int[]{2, 1, 3, 1, 2};
