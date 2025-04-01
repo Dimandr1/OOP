@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
+
+<Stage minHeight="600.0" minWidth="800.0" resizable="false" title="Ящир" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nsu.stolyarov.task_2_3_1.Controller">
+    <scene>
+        <Scene fill="#14ff53">
+            <AnchorPane prefHeight="600.0" prefWidth="800.0">
+            <children>
+               <Pane layoutX="250.0" layoutY="150.0" prefHeight="301.0" prefWidth="300.0">
+                  <children>
+                     <Text fx:id="errorText" fill="#f50000" layoutX="19.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Неправильно заполнены настройки!" textAlignment="CENTER" visible="false" wrappingWidth="263.13000106811523" />
+                     <Button fx:id="startButton" layoutX="116.0" layoutY="47.0" mnemonicParsing="false" onAction="#startButtonPressed" text="Начать игру" textAlignment="CENTER" />
+                     <HBox layoutX="19.0" layoutY="73.0" prefHeight="0.0" prefWidth="263.0">
+                        <children>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ширина поля ( в клетках)" />
+                           <TextField fx:id="widthInput" prefHeight="26.0" prefWidth="141.0" />
+                        </children>
+                     </HBox>
+                     <HBox layoutX="19.0" layoutY="99.0" prefHeight="0.0" prefWidth="263.0">
+                        <children>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Высота поля ( в клетках)" />
+                           <TextField fx:id="heightInput" prefHeight="26.0" prefWidth="141.0" />
+                        </children>
+                     </HBox>
+                     <HBox layoutX="19.0" layoutY="125.0" prefHeight="0.0" prefWidth="263.0">
+                        <children>
+                           <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Количество еды на поле" />
+                           <TextField fx:id="foodAmountInput" prefHeight="26.0" prefWidth="141.0" />
+                        </children>
+                     </HBox>
+                  </children>
+               </Pane>
+            </children></AnchorPane>
+        </Scene>
+    </scene>
+</Stage>
