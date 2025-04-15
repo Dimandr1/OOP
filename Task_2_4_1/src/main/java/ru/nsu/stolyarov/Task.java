@@ -8,7 +8,7 @@ public class Task {
     public int bonus;
     public int total;
 
-    public Task(){
+    public Task() {
         build = false;
         docs = false;
         style = false;

@@ -21,18 +21,18 @@ public class RepoManager {
         // Ожидаем завершения
         int exitCode = proc.waitFor();
         System.out.println("Exited with code: " + exitCode);
-        if(exitCode == 0 || exitCode == 128){
+        if (exitCode == 0 || exitCode == 128) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-    public static String getRepoName(String downloadUrl){
+
+    public static String getRepoName(String downloadUrl) {
 
         int ind = downloadUrl.lastIndexOf('/');
         StringBuilder sb = new StringBuilder();
-        for(int i = ind + 1; i < downloadUrl.length() && downloadUrl.charAt(i) != '.'; i++){
+        for (int i = ind + 1; i < downloadUrl.length() && downloadUrl.charAt(i) != '.'; i++) {
             sb.append(downloadUrl.charAt(i));
         }
         String folderName = sb.toString();

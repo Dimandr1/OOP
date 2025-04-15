@@ -7,7 +7,7 @@ public class TaskChecker {
 
     public static Task processTask(String folderPath, String taskName) throws IOException, InterruptedException {
         Task task = new Task();
-        if(!changeBranch(taskName, folderPath)) {
+        if (!changeBranch(taskName, folderPath)) {
             return task;
         }
 
@@ -17,11 +17,11 @@ public class TaskChecker {
         String taskPath = sb.toString();
 
 
-        if(!build(taskPath, task)){
+        if (!build(taskPath, task)) {
             return task;
         }
 
-        if(!docs(taskPath, task)){
+        if (!docs(taskPath, task)) {
             return task;
         }
 
@@ -30,12 +30,15 @@ public class TaskChecker {
         }*/
         task.style = true;
 
-        if(!test(taskPath, task)){
+        if (!test(taskPath, task)) {
             return task;
         }
 
+        countPoints(task);
+
         return task;
     }
+
     private static boolean changeBranch(String branchName, String folderPath) throws IOException, InterruptedException {
         ProcessBuilder processBuilder =
                 new ProcessBuilder("git", "switch", branchName);
@@ -67,10 +70,9 @@ public class TaskChecker {
         int exitCode = proc.waitFor();
         boolean res = (exitCode > 0 ? false : true);
 
-        if(res){
+        if (res) {
             task.build = true;
-        }
-        else{
+        } else {
             task.build = false;
         }
 
@@ -92,10 +94,9 @@ public class TaskChecker {
         int exitCode = proc.waitFor();
         boolean res = (exitCode > 0 ? false : true);
 
-        if(res){
+        if (res) {
             task.docs = true;
-        }
-        else{
+        } else {
             task.docs = false;
         }
 
@@ -160,10 +161,10 @@ public class TaskChecker {
             int totalInd = htmlTests.indexOf("Total");
             int percentInd = htmlTests.indexOf('%', totalInd);
             int i;
-            for(i = percentInd; htmlTests.charAt(i) != '>'; i--);
+            for (i = percentInd; htmlTests.charAt(i) != '>'; i--) ;
             i++;
             int cov = 0;
-            for(; htmlTests.charAt(i) >= '0' && htmlTests.charAt(i) <= '9'; i++){
+            for (; htmlTests.charAt(i) >= '0' && htmlTests.charAt(i) <= '9'; i++) {
                 cov *= 10;
                 cov += htmlTests.charAt(i) - '0';
             }
@@ -173,9 +174,17 @@ public class TaskChecker {
             res = false;
         }
 
-        if(res == false){
+        if (res == false) {
             task.testsCoverage = 0;
         }
         return res;
+    }
+
+    private static boolean countPoints(Task task) {
+        task.total = 0;
+        if (task.build && task.docs && task.style && task.testsCoverage >= 80) {
+            task.total++;
+        }
+        return true;
     }
 }

@@ -2,7 +2,7 @@ package ru.nsu.stolyarov;
 
 public class HtmlManager {
 
-    public static void printRes(Task task){
+    public static void printRes(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append("build = ");
         sb.append(task.build);
