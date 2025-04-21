@@ -41,3 +41,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 OOP/
+Dsl.groovy
+userCommand.gdsl

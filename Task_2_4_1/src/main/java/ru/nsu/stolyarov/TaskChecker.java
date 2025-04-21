@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class TaskChecker {
 
-    public static Task processTask(String folderPath, String taskName) throws IOException, InterruptedException {
-        Task task = new Task();
-        if (!changeBranch(taskName, folderPath)) {
+    public static Task processTask(String studentName, String folderPath, String taskName) throws IOException, InterruptedException {
+        Task task = new Task(taskName, studentName);
+        /*if (!changeBranch(taskName, folderPath)) {
             return task;
-        }
+        }*/
 
         StringBuilder sb = new StringBuilder(folderPath);
         sb.append("/");
@@ -25,16 +25,15 @@ public class TaskChecker {
             return task;
         }
 
-        /*if(!style(taskPath)){
-            return;
-        }*/
-        task.style = true;
+        if(!style(taskPath, task)){
+            return task;
+        }
 
         if (!test(taskPath, task)) {
             return task;
         }
 
-        countPoints(task);
+        countPoints(taskPath, task);
 
         return task;
     }
@@ -104,6 +103,11 @@ public class TaskChecker {
     }
 
 
+    private static boolean style(String folderPath, Task task){
+        boolean res = true;
+        task.style = res;
+        return res;
+    }
     /*private static boolean style(String folderPath) throws IOException, InterruptedException {
         ProcessBuilder processBuilder =
                 new ProcessBuilder("", "check");
@@ -180,7 +184,7 @@ public class TaskChecker {
         return res;
     }
 
-    private static boolean countPoints(Task task) {
+    private static boolean countPoints(String folderPath, Task task) {
         task.total = 0;
         if (task.build && task.docs && task.style && task.testsCoverage >= 80) {
             task.total++;
